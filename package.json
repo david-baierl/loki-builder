@@ -5,7 +5,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "deep": "pnpm --recursive --bail --reporter append-only",
+    "deep": "pnpm --recursive --bail --color --reporter append-only",
     "start": "pnpm deep start",
     "dev": "pnpm deep dev",
     "build": "pnpm deep build"
