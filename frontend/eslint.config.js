@@ -1,18 +1,18 @@
 import stylistic from '@stylistic/eslint-plugin'
+import tseslint from 'typescript-eslint'
 
-const config = stylistic.configs.customize({
-  indent: 2,
-  quotes: 'single',
-  semi: false,
-  jsx: true,
-  commaDangle: 'always-multiline',
-})
-
-export default [
+export default tseslint.config(
+  tseslint.configs.recommended,
+  stylistic.configs.customize({
+    indent: 2,
+    quotes: 'single',
+    semi: false,
+    jsx: true,
+    commaDangle: 'always-multiline',
+  }),
   {
-    ...config,
     rules: {
-      ...config.rules,
+      '@typescript-eslint/no-explicit-any': 0,
     },
   },
-]
+)

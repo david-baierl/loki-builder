@@ -1,4 +1,4 @@
-import { JSX } from "solid-js";
+import { JSX } from 'solid-js'
 
 type ForwardRef<E extends Element = Element> = Partial<(
   JSX.DirectiveAttributes &
@@ -9,7 +9,7 @@ type ForwardRef<E extends Element = Element> = Partial<(
 
   // wont work because there are empty
   // JSX.PropAttributes &
-  // JSX.AttrAttributes & 
+  // JSX.AttrAttributes &
   // JSX.BoolAttributes &
 
   { ref: (ref: E) => void }
@@ -24,18 +24,18 @@ export const forwardRef = <T extends ForwardRef<any> & object>(props: T) => {
   return [
     new Proxy(props, {
       get: (obj: any, key) => {
-        if (key === 'ref' || typeof key === 'string' && key.includes(':')) return undefined
+        if (key === 'ref' || (typeof key === 'string' && key.includes(':'))) return undefined
         return obj[key]
       },
-      ownKeys: () => Object.keys(props).filter(k => !k.includes(':') && k !== 'ref')
+      ownKeys: () => Object.keys(props).filter(k => !k.includes(':') && k !== 'ref'),
     }) as { [K in keyof T as NonForward<K>]: T[K] },
 
     new Proxy(props, {
       get: (obj: any, key) => {
-        if (key === 'ref' || typeof key === 'string' && key.includes(':')) return obj[key]
+        if (key === 'ref' || (typeof key === 'string' && key.includes(':'))) return obj[key]
         return undefined
       },
-      ownKeys: () => Object.keys(props).filter(k => k.includes(':') || k === 'ref')
+      ownKeys: () => Object.keys(props).filter(k => k.includes(':') || k === 'ref'),
     }) as { [K in keyof T as Forward<K>]: T[K] },
   ] as const
 }
