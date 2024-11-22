@@ -2,7 +2,6 @@ import { createSignal } from "solid-js";
 import logo from "./assets/logo.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
-import { Parent } from "./utils/forward-ref";
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
@@ -15,7 +14,6 @@ function App() {
 
   return (
     <main class="container">
-      <Parent />
       <h1>Welcome to Tauri + Solid</h1>
 
       <div class="row">

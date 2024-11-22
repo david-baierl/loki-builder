@@ -1,8 +1,4 @@
-import { createSignal, JSX, ParentProps } from "solid-js"
-
-type Prettify<T> = {
-  [K in keyof T]: T[K];
-} & {};
+import { JSX } from "solid-js";
 
 type ForwardRef<E extends Element = Element> = Partial<(
   JSX.DirectiveAttributes &
@@ -32,7 +28,7 @@ export const forwardRef = <T extends ForwardRef<any> & object>(props: T) => {
         return obj[key]
       },
       ownKeys: () => Object.keys(props).filter(k => !k.includes(':') && k !== 'ref')
-    }) as Prettify<{ [K in keyof T as NonForward<K>]: T[K]}>,
+    }) as { [K in keyof T as NonForward<K>]: T[K] },
 
     new Proxy(props, {
       get: (obj: any, key) => {
@@ -40,32 +36,32 @@ export const forwardRef = <T extends ForwardRef<any> & object>(props: T) => {
         return undefined
       },
       ownKeys: () => Object.keys(props).filter(k => k.includes(':') || k === 'ref')
-    }) as Prettify<{ [K in keyof T as Forward<K>]: T[K] }>,
+    }) as { [K in keyof T as Forward<K>]: T[K] },
   ] as const
 }
 
-function test(...args: any[]) {
-  console.log('test', args)
-}
+// function test(...args: any[]) {
+//   console.log('test', args)
+// }
 
-declare module "solid-js" {
-  namespace JSX {
-    interface Directives {
-      test: [() => any, (v: any) => any];
-    }
-  }
-}
+// declare module "solid-js" {
+//   namespace JSX {
+//     interface Directives {
+//       // test: [() => any, (v: any) => any];
+//     }
+//   }
+// }
 
-const Child = (props: ForwardRef<HTMLDivElement> & ParentProps) => {
-  const [others, forward] = forwardRef(props)
+// const Child = (props: ForwardRef<HTMLDivElement> & ParentProps) => {
+//   const [others, forward] = forwardRef(props)
 
-  console.log(props, { others: { ...others }, forward: { ...forward } })
+//   console.log(props, { others: { ...others }, forward: { ...forward } })
 
-  return <div {...forward} />
-}
+//   return <div {...forward} />
+// }
 
-export const Parent = () => {
-  const [ref, setRef] = createSignal<HTMLElement>()
+// export const Parent = () => {
+//   const [ref, setRef] = createSignal<HTMLElement>()
 
-  return <Child ref={setRef} on:click={event => { }} use:test={[() => { }, () => { }]} />
-}
+//   return <Child ref={setRef} on:click={event => { }} use:test={[() => { }, () => { }]} />
+// }
