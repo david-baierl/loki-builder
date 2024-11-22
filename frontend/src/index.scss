@@ -1,0 +1,45 @@
+@use "sass:map";
+@use "@catppuccin/palette/scss/catppuccin";
+
+// -----------------------------------------------
+// theme: catppuccin
+// -----------------------------------------------
+
+$latte: map.get(catppuccin.$palette, "latte");
+$mocha: map.get(catppuccin.$palette, "mocha");
+
+.ui-light {
+  @each $name, $color in $latte {
+    // you need surround the catppuccin color names with quotes
+    --#{$name}: #{$color};
+  }
+}
+
+.ui-dark {
+  @each $name, $color in $mocha {
+    // you need surround the catppuccin color names with quotes
+    --color-#{$name}: #{$color};
+  }
+}
+
+// -----------------------------------------------
+// base
+// -----------------------------------------------
+
+:root,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+:root {
+  // default theme
+  @extend .ui-dark
+}
+
+body {
+  background-color: var(--color-crust);
+}
