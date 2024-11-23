@@ -1,12 +1,23 @@
 import { defineConfig } from 'vite'
 import solid from 'vite-plugin-solid'
+import linaria from '@wyw-in-js/vite'
+import path from 'path'
 
-// @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  plugins: [solid()],
+  plugins: [
+    linaria({ include: ['**/*.{ts,tsx}'] }),
+    solid(),
+  ],
+
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, './src'),
+      '@tauri': path.resolve(__dirname, './gen/tauri.ts'),
+    },
+  },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //

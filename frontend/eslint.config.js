@@ -2,6 +2,9 @@ import stylistic from '@stylistic/eslint-plugin'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
+  {
+    ignores: ['gen/*'],
+  },
   tseslint.configs.recommended,
   stylistic.configs.customize({
     indent: 2,

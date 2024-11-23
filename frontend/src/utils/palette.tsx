@@ -1,7 +1,14 @@
 import { For, Show } from 'solid-js'
+import { css } from '@linaria/core'
 
 import { Tooltip as ArkTooltip, useTooltip } from '@ark-ui/solid/tooltip'
 import { Portal } from 'solid-js/web'
+
+const colorBox = css`
+  all: unset;
+  width: 24px;
+  height: 24px;
+`
 
 const color_names = [
   'rosewater',
@@ -45,11 +52,8 @@ function Color(props: ColorProps) {
   return (
     <ArkTooltip.RootProvider value={tooltip}>
       <ArkTooltip.Trigger
+        class={colorBox}
         style={{
-          'border-radius': '0',
-          'padding': '0',
-          'width': '24px',
-          'height': '24px',
           'background-color': `var(--color-${props.name})`,
         }}
       />
