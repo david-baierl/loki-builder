@@ -1,6 +1,6 @@
-import { For } from 'solid-js'
+import { For, Show } from 'solid-js'
 
-import { Tooltip as ArkTooltip } from '@ark-ui/solid/tooltip'
+import { Tooltip as ArkTooltip, useTooltip } from '@ark-ui/solid/tooltip'
 import { Portal } from 'solid-js/web'
 
 const color_names = [
@@ -39,31 +39,37 @@ interface ColorProps {
   name: string
 }
 
-export const Color = (props: ColorProps) => (
-  <ArkTooltip.Root>
-    <ArkTooltip.Trigger
-      style={{
-        'border-radius': '0',
-        'padding': '0',
-        'width': '24px',
-        'height': '24px',
-        'background-color': `var(--color-${props.name})`,
-      }}
-    />
-    <Portal>
-      <ArkTooltip.Positioner>
-        <ArkTooltip.Content
-          style={{
-            'background-color': 'var(--color-overlay0)',
-            'padding': '4px 8px',
-          }}
-        >
-          { `--color-${props.name}` }
-        </ArkTooltip.Content>
-      </ArkTooltip.Positioner>
-    </Portal>
-  </ArkTooltip.Root>
-)
+function Color(props: ColorProps) {
+  const tooltip = useTooltip()
+
+  return (
+    <ArkTooltip.RootProvider value={tooltip}>
+      <ArkTooltip.Trigger
+        style={{
+          'border-radius': '0',
+          'padding': '0',
+          'width': '24px',
+          'height': '24px',
+          'background-color': `var(--color-${props.name})`,
+        }}
+      />
+      <Show when={tooltip().open}>
+        <Portal>
+          <ArkTooltip.Positioner>
+            <ArkTooltip.Content
+              style={{
+                'background-color': 'var(--color-overlay0)',
+                'padding': '4px 8px',
+              }}
+            >
+              { `--color-${props.name}` }
+            </ArkTooltip.Content>
+          </ArkTooltip.Positioner>
+        </Portal>
+      </Show>
+    </ArkTooltip.RootProvider>
+  )
+}
 
 function Palette() {
   return (
@@ -72,14 +78,14 @@ function Palette() {
         'display': 'flex',
         'flex-direction': 'column',
         'margin': '16px auto',
-        'gap': '8px',
+        'gap': '4px',
       }}
     >
       <div
         style={{
           'display': 'flex',
-          'padding-left': '64px',
-          'gap': '8px',
+          'padding-left': '140px',
+          'gap': '4px',
         }}
       >
         <For each={shade_names}>{name => <Color name={name} />}</For>
@@ -88,7 +94,7 @@ function Palette() {
         style={{
           'display': 'flex',
           'flex-direction': 'column',
-          'gap': '8px',
+          'gap': '4px',
         }}
       >
         <For each={color_names}>
@@ -96,9 +102,10 @@ function Palette() {
             <div
               style={{
                 display: 'flex',
-                gap: '8px',
+                gap: '4px',
               }}
             >
+              <span style={{ 'text-align': 'right', 'width': '80px' }}>{color_name}</span>
               <Color name={color_name} />
               <Color name={`${color_name}-bright`} />
               <For each={shade_names}>{shade_name => <Color name={`${color_name}-${shade_name}`} />}</For>

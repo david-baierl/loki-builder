@@ -24,7 +24,7 @@ $color_names: (
 );
 
 $shade_names: (
-  "text",
+  // "text",
   "subtext1",
   "subtext0",
   "overlay2",
@@ -39,10 +39,10 @@ $shade_names: (
 );
 
 @mixin generate_palette($palette) {
-  $base: map.get($palette, "base");
   $text: map.get($palette, "text");
 
   // shades
+  --color-text: #{$text};
   @each $name in $shade_names {
     $color: map.get($palette, $name);
 
@@ -52,12 +52,14 @@ $shade_names: (
   // colors
   @each $color_name in $color_names {
     $color: map.get($palette, $color_name);
-    --color-#{$color_name}: #{$color};
 
+    --color-#{$color_name}: #{$color};
+    
     // mixed
+    --color-#{$color_name}-text: #{color.mix($text, $color, 60%)};
     @each $shade_name in $shade_names {
-      $base: map.get($palette, $shade_name);
-      --color-#{$color_name}-#{$shade_name}: #{color.mix($base, $color, 80%)};
+      $shade: map.get($palette, $shade_name);
+      --color-#{$color_name}-#{$shade_name}: #{color.mix($shade, $color, 85%)};
     }
   }
 }
@@ -69,7 +71,7 @@ $shade_names: (
   // bright
   @each $name in $color_names {
     $color: map.get($palette, $name);
-    --color-#{$name}-bright: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $lightness: 9%), rgb)};
+    --color-#{$name}-bright: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $lightness: 10%), rgb)};
   }
 }
 
@@ -80,7 +82,7 @@ $shade_names: (
   // bright
   @each $name in $color_names {
     $color: map.get($palette, $name);
-    --color-#{$name}-bright: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $chroma: 8, $lightness: -6%), rgb)};
+    --color-#{$name}-bright: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $chroma: 8, $lightness: -10%), rgb)};
   }
 }
 
