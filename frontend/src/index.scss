@@ -1,24 +1,86 @@
 @use "sass:map";
+@use "sass:color";
 @use "@catppuccin/palette/scss/catppuccin";
 
 // -----------------------------------------------
 // theme: catppuccin
 // -----------------------------------------------
 
-$latte: map.get(catppuccin.$palette, "latte");
-$mocha: map.get(catppuccin.$palette, "mocha");
+$color_names: (
+  "rosewater",
+  "flamingo",
+  "pink",
+  "mauve",
+  "red",
+  "maroon",
+  "peach",
+  "yellow",
+  "green",
+  "teal",
+  "sky",
+  "sapphire",
+  "blue",
+  "lavender",
+);
+
+$shade_names: (
+  "text",
+  "subtext1",
+  "subtext0",
+  "overlay2",
+  "overlay1",
+  "overlay0",
+  "surface2",
+  "surface1",
+  "surface0",
+  "base",
+  "mantle",
+  "crust"
+);
+
+@mixin generate_palette($palette) {
+  $base: map.get($palette, "base");
+  $text: map.get($palette, "text");
+
+  // shades
+  @each $name in $shade_names {
+    $color: map.get($palette, $name);
+
+    --color-#{$name}: #{$color};
+  }
+  
+  // colors
+  @each $color_name in $color_names {
+    $color: map.get($palette, $color_name);
+    --color-#{$color_name}: #{$color};
+
+    // mixed
+    @each $shade_name in $shade_names {
+      $base: map.get($palette, $shade_name);
+      --color-#{$color_name}-#{$shade_name}: #{color.mix($base, $color, 80%)};
+    }
+  }
+}
 
 .ui-light {
-  @each $name, $color in $latte {
-    // you need surround the catppuccin color names with quotes
-    --#{$name}: #{$color};
+  $palette: map.get(catppuccin.$palette, "latte");
+  @include generate_palette($palette);
+
+  // bright
+  @each $name in $color_names {
+    $color: map.get($palette, $name);
+    --color-#{$name}-bright: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $lightness: 9%), rgb)};
   }
 }
 
 .ui-dark {
-  @each $name, $color in $mocha {
-    // you need surround the catppuccin color names with quotes
-    --color-#{$name}: #{$color};
+  $palette: map.get(catppuccin.$palette, "mocha");
+  @include generate_palette($palette);
+
+  // bright
+  @each $name in $color_names {
+    $color: map.get($palette, $name);
+    --color-#{$name}-bright: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $chroma: 8, $lightness: -6%), rgb)};
   }
 }
 
@@ -41,5 +103,6 @@ body {
 }
 
 body {
-  background-color: var(--color-crust);
+  background-color: var(--color-base);
+  color: var(--color-text);
 }

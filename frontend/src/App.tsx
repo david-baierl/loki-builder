@@ -4,6 +4,7 @@ import { invoke } from '@tauri-apps/api/core'
 import './App.css'
 import { Basic } from './basic'
 import { Camera } from 'lucide-solid'
+import Palette from './utils/palette'
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal('')
@@ -17,6 +18,7 @@ function App() {
   return (
     <main class="container">
       <h1>Welcome to Tauri + Solid</h1>
+      <Palette />
       <Basic />
       <Camera color="red" size={48} />
 
