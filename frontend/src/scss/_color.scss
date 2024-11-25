@@ -1,0 +1,306 @@
+@use "sass:map";
+@use "sass:color";
+@use "@catppuccin/palette/scss/catppuccin";
+
+// ---------------------------------------------
+// primitives color (custom catppuccin variant)
+// ---------------------------------------------
+
+$accent_names: (
+  "rosewater",
+  "flamingo",
+  "pink",
+  "mauve",
+  "red",
+  "maroon",
+  "peach",
+  "yellow",
+  "green",
+  "teal",
+  "sky",
+  "sapphire",
+  "blue",
+  "lavender",
+);
+
+$black: map.get(catppuccin.$palette, "mocha", "crust");
+$white: map.get(catppuccin.$palette, "latte", "base");
+
+$mocha_gray: map.get(catppuccin.$palette, "mocha", "overlay1");
+$latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
+
+@mixin generate_color($name, $color, $forground, $background) {
+  --color-#{$name}-50: #{color.mix($forground, $color, 90%)};
+  --color-#{$name}-100: #{color.mix($forground, $color, 80%)};
+  --color-#{$name}-200: #{color.mix($forground, $color, 60%)};
+  --color-#{$name}-300: #{color.mix($forground, $color, 40%)};
+  --color-#{$name}-400: #{color.mix($forground, $color, 20%)};
+  --color-#{$name}-500: #{$color};
+  --color-#{$name}-600: #{color.mix($background, $color, 20%)};
+  --color-#{$name}-700: #{color.mix($background, $color, 40%)};
+  --color-#{$name}-800: #{color.mix($background, $color, 60%)};
+  --color-#{$name}-900: #{color.mix($background, $color, 80%)};
+  --color-#{$name}-950: #{color.mix($background, $color, 90%)};
+}
+
+@mixin latte {
+  $palette: map.get(catppuccin.$palette, "latte");
+  // mocha gray 800
+  $forground: color.mix($black, $mocha_gray, 60%);
+  $background: $white;
+
+  --color-black: #{$black};
+  --color-white: #{$white};
+
+  // gray
+  --color-gray-0: #{$forground};
+  @include generate_color("gray", $latte_gray, $forground, $background);
+  --color-gray-1000: #{$background};
+
+  // colors
+  @each $accent_name in $accent_names {
+    $color: map.get($palette, $accent_name);
+    @include generate_color($accent_name, $color, $forground, $background);
+    --color-#{$accent_name}-A500: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $lightness: 10%), rgb)};
+  }
+}
+
+@mixin mocha {
+  $palette: map.get(catppuccin.$palette, "mocha");
+  // latte gray 800
+  $forground: color.mix($white, $latte_gray, 60%);
+  $background: $black;
+
+  --color-black: #{$black};
+  --color-white: #{$white};
+
+  // gray
+  --color-gray-0: #{$forground};
+  @include generate_color("gray", $mocha_gray, $forground, $background);
+  --color-gray-1000: #{$background};
+
+  // colors
+  @each $accent_name in $accent_names {
+    $color: map.get($palette, $accent_name);
+    @include generate_color($accent_name, $color, $forground, $background);
+    --color-#{$accent_name}-A500: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $chroma: 8, $lightness: -10%), rgb)};
+  }
+}
+
+// ---------------------------------------------
+// alias
+// ---------------------------------------------
+
+@mixin generate_alias($target_name, $source_name) {
+  --#{$target_name}-50: var(--color-#{$source_name}-50);
+  --#{$target_name}-100: var(--color-#{$source_name}-100);
+  --#{$target_name}-200: var(--color-#{$source_name}-200);
+  --#{$target_name}-300: var(--color-#{$source_name}-300);
+  --#{$target_name}-400: var(--color-#{$source_name}-400);
+  --#{$target_name}-default: var(--color-#{$source_name}-500);
+  --#{$target_name}-600: var(--color-#{$source_name}-600);
+  --#{$target_name}-700: var(--color-#{$source_name}-700);
+  --#{$target_name}-800: var(--color-#{$source_name}-800);
+  --#{$target_name}-900: var(--color-#{$source_name}-900);
+  --#{$target_name}-950: var(--color-#{$source_name}-950);
+}
+
+@mixin alias {
+  --neutral-black: var(--color-black);
+  --neutral-white: var(--color-white);
+
+  --neutral-forground: var(--color-gray-0);
+  --neutral-background: var(--color-gray-1000);
+
+  // neutral
+  --neutral-0: var(--color-gray-0);
+  @include generate_alias("neutral", "gray");
+  --neutral-1000: var(--color-gray-1000);
+
+  // primary
+  @include generate_alias("primary", "blue");
+  --primary-A500: var(--color-blue-A500);
+
+  // info
+  @include generate_alias("info", "blue");
+  --info-A500: var(--color-blue-A500);
+
+  // success
+  @include generate_alias("success", "green");
+  --success-A500: var(--color-green-A500);
+
+  // warning
+  @include generate_alias("warning", "peach");
+  --warning-A500: var(--color-peach-A500);
+
+  // danger
+  @include generate_alias("danger", "red");
+  --danger-A500: var(--color-red-A500);
+}
+
+// ---------------------------------------------
+// mapped
+// ---------------------------------------------
+
+@mixin mapped_text {
+  --text-heading: var(--neutral-forground);
+  --text-body: var(--neutral-forground);
+  --text-primary: var(--primary-default);
+  --text-info: var(--info-default);
+  --text-success: var(--success-default);
+  --text-warning: var(--warning-default);
+  --text-danger: var(--danger-default);
+  --text-disabled: var(--neutral-default);
+
+  // action primary
+  --text-action-primary-default: var(--primary-default);
+  --text-action-primary-hover: var(--primary-600);
+  --text-action-primary-focus: var(--primary-600);
+  --text-action-primary-active: var(--primary-700);
+  --text-action-primary-disabled: var(--neutral-default);
+
+  // action info
+  --text-action-info-default: var(--info-default);
+  --text-action-info-hover: var(--info-600);
+  --text-action-info-focus: var(--info-600);
+  --text-action-info-active: var(--info-700);
+  --text-action-info-disabled: var(--neutral-default);
+
+  // action success
+  --text-action-success-default: var(--success-default);
+  --text-action-success-hover: var(--success-600);
+  --text-action-success-focus: var(--success-600);
+  --text-action-success-active: var(--success-700);
+  --text-action-success-disabled: var(--neutral-default);
+
+  // action warning
+  --text-action-warning-default: var(--warning-default);
+  --text-action-warning-hover: var(--warning-600);
+  --text-action-warning-focus: var(--warning-600);
+  --text-action-warning-active: var(--warning-700);
+  --text-action-warning-disabled: var(--neutral-default);
+
+  // action danger
+  --text-action-danger-default: var(--danger-default);
+  --text-action-danger-hover: var(--danger-600);
+  --text-action-danger-focus: var(--danger-600);
+  --text-action-danger-active: var(--danger-700);
+  --text-action-danger-disabled: var(--neutral-default);
+
+  // action on
+  --text-action-on-default: var(--neutral-800);
+  --text-action-on-hover: var(--neutral-800);
+  --text-action-on-focus: var(--neutral-800);
+  --text-action-on-active: var(--neutral-800);
+  --text-action-on-disabled: var(--neutral-800);
+}
+
+@mixin mapped_surface {
+  --surface-base: var(--neutral-900);
+  --surface-mantle: var(--neutral-950);
+  --surface-crust: var(--neutral-1000);
+
+  --surface-primary: var(--primary-900);
+  --surface-info: var(--info-900);
+  --surface-success: var(--success-900);
+  --surface-warning: var(--warning-900);
+  --surface-danger: var(--danger-900);
+  --surface-disabled: var(--neutral-700);
+
+  // action primary
+  --surface-action-primary-default: var(--primary-default);
+  --surface-action-primary-hover: var(--primary-600);
+  --surface-action-primary-focus: var(--primary-600);
+  --surface-action-primary-active: var(--primary-700);
+  --surface-action-primary-disabled: var(--neutral-default);
+
+  // action info
+  --surface-action-info-default: var(--info-default);
+  --surface-action-info-hover: var(--info-600);
+  --surface-action-info-focus: var(--info-600);
+  --surface-action-info-active: var(--info-700);
+  --surface-action-info-disabled: var(--neutral-default);
+
+  // action success
+  --surface-action-success-default: var(--success-default);
+  --surface-action-success-hover: var(--success-600);
+  --surface-action-success-focus: var(--success-600);
+  --surface-action-success-active: var(--success-700);
+  --surface-action-success-disabled: var(--neutral-default);
+
+  // action warning
+  --surface-action-warning-default: var(--warning-default);
+  --surface-action-warning-hover: var(--warning-600);
+  --surface-action-warning-focus: var(--warning-600);
+  --surface-action-warning-active: var(--warning-700);
+  --surface-action-warning-disabled: var(--neutral-default);
+
+  // action danger
+  --surface-action-danger-default: var(--danger-default);
+  --surface-action-danger-hover: var(--danger-600);
+  --surface-action-danger-focus: var(--danger-600);
+  --surface-action-danger-active: var(--danger-700);
+  --surface-action-danger-disabled: var(--neutral-default);
+}
+
+@mixin mapped_icon {
+  --icon-default: var(--neutral-forground);
+  --icon-primary: var(--primary-default);
+  --icon-info: var(--info-default);
+  --icon-success: var(--success-default);
+  --icon-warning: var(--warning-default);
+  --icon-danger: var(--danger-default);
+  --icon-disabled: var(--neutral-default);
+}
+
+@mixin mapped_border {
+  --border-default: var(--neutral-forground);
+  --border-primary: var(--primary-default);
+  --border-info: var(--info-default);
+  --border-success: var(--success-default);
+  --border-warning: var(--warning-default);
+  --border-danger: var(--danger-default);
+  --border-disabled: var(--neutral-default);
+
+  // action primary
+  --border-action-primary-default: var(--primary-default);
+  --border-action-primary-hover: var(--primary-600);
+  --border-action-primary-focus: var(--primary-600);
+  --border-action-primary-active: var(--primary-700);
+  --border-action-primary-disabled: var(--neutral-default);
+
+  // action info
+  --border-action-info-default: var(--info-default);
+  --border-action-info-hover: var(--info-600);
+  --border-action-info-focus: var(--info-600);
+  --border-action-info-active: var(--info-700);
+  --border-action-info-disabled: var(--neutral-default);
+
+  // action success
+  --border-action-success-default: var(--success-default);
+  --border-action-success-hover: var(--success-600);
+  --border-action-success-focus: var(--success-600);
+  --border-action-success-active: var(--success-700);
+  --border-action-success-disabled: var(--neutral-default);
+
+  // action warning
+  --border-action-warning-default: var(--warning-default);
+  --border-action-warning-hover: var(--warning-600);
+  --border-action-warning-focus: var(--warning-600);
+  --border-action-warning-active: var(--warning-700);
+  --border-action-warning-disabled: var(--neutral-default);
+
+  // action danger
+  --border-action-danger-default: var(--danger-default);
+  --border-action-danger-hover: var(--danger-600);
+  --border-action-danger-focus: var(--danger-600);
+  --border-action-danger-active: var(--danger-700);
+  --border-action-danger-disabled: var(--neutral-default);
+}
+
+@mixin mapped {
+  @include mapped_text;
+  @include mapped_surface;
+  @include mapped_icon;
+  @include mapped_border;
+}

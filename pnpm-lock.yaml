@@ -19,9 +19,6 @@ importers:
       '@ark-ui/solid':
         specifier: ^4.5.1
         version: 4.5.1(solid-js@1.9.3)
-      '@catppuccin/palette':
-        specifier: ^1.7.1
-        version: 1.7.1
       '@tauri-apps/api':
         specifier: ^2.1.1
         version: 2.1.1
@@ -32,6 +29,9 @@ importers:
         specifier: ^1.9.3
         version: 1.9.3
     devDependencies:
+      '@catppuccin/palette':
+        specifier: ^1.7.1
+        version: 1.7.1
       '@linaria/core':
         specifier: ^6.2.0
         version: 6.2.0

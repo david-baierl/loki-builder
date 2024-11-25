@@ -27,20 +27,7 @@ const color_names = [
   'lavender',
 ]
 
-const shade_names = [
-  'text',
-  'subtext1',
-  'subtext0',
-  'overlay2',
-  'overlay1',
-  'overlay0',
-  'surface2',
-  'surface1',
-  'surface0',
-  'base',
-  'mantle',
-  'crust',
-]
+const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
 interface ColorProps {
   name: string
@@ -88,19 +75,21 @@ function Palette() {
       <div
         style={{
           'display': 'flex',
-          'padding-left': '140px',
-          'gap': '4px',
-        }}
-      >
-        <For each={shade_names}>{name => <Color name={name} />}</For>
-      </div>
-      <div
-        style={{
-          'display': 'flex',
           'flex-direction': 'column',
           'gap': '4px',
         }}
       >
+        <div
+          style={{
+            display: 'flex',
+            gap: '4px',
+          }}
+        >
+          <span style={{ 'text-align': 'right', 'width': '80px' }}>gray</span>
+          <For each={shades}>{shade => <Color name={`gray-${shade}`} />}</For>
+          <Color name="gray-0" />
+        </div>
+
         <For each={color_names}>
           {color_name => (
             <div
@@ -110,9 +99,8 @@ function Palette() {
               }}
             >
               <span style={{ 'text-align': 'right', 'width': '80px' }}>{color_name}</span>
-              <Color name={color_name} />
-              <Color name={`${color_name}-bright`} />
-              <For each={shade_names}>{shade_name => <Color name={`${color_name}-${shade_name}`} />}</For>
+              <For each={shades}>{shade => <Color name={`${color_name}-${shade}`} />}</For>
+              <Color name={`${color_name}-A500`} />
             </div>
           )}
         </For>

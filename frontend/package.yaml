@@ -7,11 +7,12 @@ scripts:
   serve: vite preview
 dependencies:
   '@ark-ui/solid': ^4.5.1
-  '@catppuccin/palette': ^1.7.1
   '@tauri-apps/api': ^2.1.1
   '@tauri-apps/plugin-shell': ^2.0.1
   solid-js: ^1.9.3
 devDependencies:
+  # we compile this in sass, no need for runtime js 
+  '@catppuccin/palette': ^1.7.1
   '@linaria/core': ^6.2.0
   '@stylistic/eslint-plugin': ^2.11.0
   '@types/node': ^22.9.3
