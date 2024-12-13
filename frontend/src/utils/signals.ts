@@ -47,7 +47,8 @@ export type Signal<T> = (
 // signal
 // ---------------------------------------------
 
-export function mutateGetter<T>(getter: Accessor<T>): asserts getter is SignalGetter<T> {
+/** @internal */
+export function _mutateGetter<T>(getter: Accessor<T>): asserts getter is SignalGetter<T> {
   Object.defineProperty(getter, 'value', {
     enumerable: true,
     get: getter,
@@ -59,7 +60,8 @@ export function mutateGetter<T>(getter: Accessor<T>): asserts getter is SignalGe
   })
 }
 
-export function mutateSetter<T>(getter: Accessor<T>, setter: Setter<T>): asserts setter is SignalSetter<T> {
+/** @internal */
+function _mutateSetter<T>(getter: Accessor<T>, setter: Setter<T>): asserts setter is SignalSetter<T> {
   Object.defineProperty(setter, 'value', {
     enumerable: true,
     get: () => untrack(getter),
@@ -71,7 +73,8 @@ export function mutateSetter<T>(getter: Accessor<T>, setter: Setter<T>): asserts
   })
 }
 
-function mutateSignal<T>(
+/** @internal */
+function _mutateSignal<T>(
   accessor: Accessor<T>,
   getter: SignalGetter<T>,
   setter: SignalSetter<T>,
@@ -95,12 +98,12 @@ function mutateSignal<T>(
 export function toSignal<T>(signal: SolidSignal<T>): Signal<T> {
   const [getter, setter] = signal
 
-  mutateSetter(getter, setter)
-  mutateGetter(getter)
+  _mutateSetter(getter, setter)
+  _mutateGetter(getter)
 
   // wrap getter in a new reference
   const _signal: Accessor<T> = () => getter()
-  mutateSignal(_signal, getter, setter)
+  _mutateSignal(_signal, getter, setter)
 
   return _signal
 }
@@ -131,7 +134,7 @@ export function memo<Next extends Prev, Init, Prev>(
   options?: MemoOptions<Next>,
 ): SignalGetter<Next> {
   const getter = createMemo(fn, value, options)
-  mutateGetter(getter)
+  _mutateGetter(getter)
 
   return getter
 }

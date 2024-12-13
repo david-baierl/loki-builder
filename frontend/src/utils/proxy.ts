@@ -1,5 +1,5 @@
 import {
-  mutateGetter,
+  _mutateGetter,
   SignalGetter,
 } from './signals'
 
@@ -22,7 +22,7 @@ export function fromProxy<T extends object>(props: T): SignalGetters<T> {
   return new Proxy(props, {
     get(obj, key) {
       const getter = () => obj[key as keyof typeof obj]
-      mutateGetter(getter)
+      _mutateGetter(getter)
 
       return getter
     },
