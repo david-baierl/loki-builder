@@ -8,6 +8,7 @@ import {
   Setter,
   Signal as SolidSignal,
   SignalOptions,
+  untrack,
 } from 'solid-js'
 
 // ---------------------------------------------
@@ -16,15 +17,16 @@ import {
 
 export type SignalGetter<T> = Accessor<T> & {
   get: Accessor<T>
+  peek: Accessor<T>
+
   readonly value: T
 }
 
 export type SignalSetter<T> = Setter<T> & {
   set: Setter<T>
 
-  // writeonly
-  set value(value: T)
-  get value(): never | undefined
+  /** @warn this is untracked */
+  value: T
 }
 
 export type Signal<T> = (
@@ -36,6 +38,7 @@ export type Signal<T> = (
   & {
     get: SignalGetter<T>
     set: SignalSetter<T>
+    peek: Accessor<T>
     value: T
   }
 )
@@ -44,17 +47,6 @@ export type Signal<T> = (
 // signal
 // ---------------------------------------------
 
-export function mutateSetter<T>(setter: Setter<T>): asserts setter is SignalSetter<T> {
-  Object.defineProperty(setter, 'value', {
-    enumerable: true,
-    set: setter,
-  })
-
-  Object.assign(setter, {
-    set: setter,
-  })
-}
-
 export function mutateGetter<T>(getter: Accessor<T>): asserts getter is SignalGetter<T> {
   Object.defineProperty(getter, 'value', {
     enumerable: true,
@@ -62,7 +54,20 @@ export function mutateGetter<T>(getter: Accessor<T>): asserts getter is SignalGe
   })
 
   Object.assign(getter, {
+    peek: () => untrack(getter),
     get: getter,
+  })
+}
+
+export function mutateSetter<T>(getter: Accessor<T>, setter: Setter<T>): asserts setter is SignalSetter<T> {
+  Object.defineProperty(setter, 'value', {
+    enumerable: true,
+    get: () => untrack(getter),
+    set: setter,
+  })
+
+  Object.assign(setter, {
+    set: setter,
   })
 }
 
@@ -81,6 +86,7 @@ function mutateSignal<T>(
     [Symbol.iterator]: function*() {
       yield * [getter, setter] as const
     },
+    peek: () => untrack(getter),
     get: getter,
     set: setter,
   })
@@ -89,7 +95,7 @@ function mutateSignal<T>(
 export function toSignal<T>(signal: SolidSignal<T>): Signal<T> {
   const [getter, setter] = signal
 
-  mutateSetter(setter)
+  mutateSetter(getter, setter)
   mutateGetter(getter)
 
   // wrap getter in a new reference
