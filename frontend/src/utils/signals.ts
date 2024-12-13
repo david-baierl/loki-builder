@@ -7,6 +7,7 @@ import {
   MemoOptions,
   Setter,
   Signal as SolidSignal,
+  SignalOptions,
 } from 'solid-js'
 
 // ---------------------------------------------
@@ -98,8 +99,10 @@ export function toSignal<T>(signal: SolidSignal<T>): Signal<T> {
   return _signal
 }
 
-export function signal<T>(init: T): Signal<T> {
-  return toSignal(createSignal(init))
+export function signal<T>(init: T, options?: SignalOptions<T>): Signal<T>
+export function signal<T>(init?: undefined, options?: SignalOptions<T>): Signal<T | undefined>
+export function signal<T>(init?: T, options?: SignalOptions<T>): Signal<T> {
+  return toSignal(createSignal(init as T, options))
 }
 
 // ---------------------------------------------
