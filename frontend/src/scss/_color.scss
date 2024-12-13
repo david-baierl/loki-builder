@@ -88,10 +88,10 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
 }
 
 // ---------------------------------------------
-// alias
+// bindings
 // ---------------------------------------------
 
-@mixin generate_alias($target_name, $source_name) {
+@mixin bind_alias($target_name, $source_name) {
   --color-#{$target_name}-50: var(--color-#{$source_name}-50);
   --color-#{$target_name}-100: var(--color-#{$source_name}-100);
   --color-#{$target_name}-200: var(--color-#{$source_name}-200);
@@ -104,137 +104,51 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
   --color-#{$target_name}-900: var(--color-#{$source_name}-900);
   --color-#{$target_name}-950: var(--color-#{$source_name}-950);
   --color-#{$target_name}-default: var(--color-#{$target_name}-500);
-}
 
-@mixin alias {
-  --color-neutral-black: var(--color-black);
-  --color-neutral-white: var(--color-white);
-
-  --color-neutral-forground: var(--color-gray-0);
-  --color-neutral-background: var(--color-gray-1000);
-
-  // neutral
-  --color-neutral-0: var(--color-gray-0);
-  @include generate_alias("neutral", "gray");
-  --color-neutral-1000: var(--color-gray-1000);
-
-  // primary
-  @include generate_alias("primary", "blue");
-  --color-primary-A500: var(--color-blue-A500);
-
-  // info
-  @include generate_alias("info", "blue");
-  --color-info-A500: var(--color-blue-A500);
-
-  // success
-  @include generate_alias("success", "green");
-  --color-success-A500: var(--color-green-A500);
-
-  // warning
-  @include generate_alias("warning", "peach");
-  --color-warning-A500: var(--color-peach-A500);
-
-  // danger
-  @include generate_alias("danger", "red");
-  --color-danger-A500: var(--color-red-A500);
+  @if $source_name != "gray" {
+    --color-#{$target_name}-A500: var(--color-#{$source_name}-A500);
+  }
 }
 
 // ---------------------------------------------
-// mapped
+// generate classes
 // ---------------------------------------------
 
-@mixin mapped_text {
-  --text-heading: var(--color-neutral-forground);
-  --text-body: var(--color-neutral-forground);
-  --text-primary: var(--color-primary-default);
-  --text-info: var(--color-info-default);
-  --text-success: var(--color-success-default);
-  --text-warning: var(--color-warning-default);
-  --text-danger: var(--color-danger-default);
-  --text-disabled: var(--color-neutral-default);
+.ui-light {
+  @include latte;
 }
 
-@mixin mapped_action {
-  // action primary
-  --action-primary-default: var(--color-primary-default);
-  --action-primary-hover: var(--color-primary-600);
-  --action-primary-focus: var(--color-primary-600);
-  --action-primary-active: var(--color-primary-700);
-  --action-primary-disabled: var(--color-neutral-default);
-
-  // action info
-  --action-info-default: var(--color-info-default);
-  --action-info-hover: var(--color-info-600);
-  --action-info-focus: var(--color-info-600);
-  --action-info-active: var(--color-info-700);
-  --action-info-disabled: var(--color-neutral-default);
-
-  // action success
-  --action-success-default: var(--color-success-default);
-  --action-success-hover: var(--color-success-600);
-  --action-success-focus: var(--color-success-600);
-  --action-success-active: var(--color-success-700);
-  --action-success-disabled: var(--color-neutral-default);
-
-  // action warning
-  --action-warning-default: var(--color-warning-default);
-  --action-warning-hover: var(--color-warning-600);
-  --action-warning-focus: var(--color-warning-600);
-  --action-warning-active: var(--color-warning-700);
-  --action-warning-disabled: var(--color-neutral-default);
-
-  // action danger
-  --action-danger-default: var(--color-danger-default);
-  --action-danger-hover: var(--color-danger-600);
-  --action-danger-focus: var(--color-danger-600);
-  --action-danger-active: var(--color-danger-700);
-  --action-danger-disabled: var(--color-neutral-default);
-
-  // action on
-  --action-on-default: var(--color-neutral-800);
-  --action-on-hover: var(--color-neutral-800);
-  --action-on-focus: var(--color-neutral-800);
-  --action-on-active: var(--color-neutral-800);
-  --action-on-disabled: var(--color-neutral-800);
+.ui-dark {
+  @include mocha;
 }
 
-@mixin mapped_surface {
-  --surface-base: var(--color-neutral-900);
-  --surface-mantle: var(--color-neutral-950);
-  --surface-crust: var(--color-neutral-1000);
-
-  --surface-primary: var(--color-primary-900);
-  --surface-info: var(--color-info-900);
-  --surface-success: var(--color-success-900);
-  --surface-warning: var(--color-warning-900);
-  --surface-danger: var(--color-danger-900);
-  --surface-disabled: var(--color-neutral-700);
+@each $color_name in $color_names {
+  .#{$color_name} {
+    @include bind_alias("primary", $color_name)
+  }
 }
 
-@mixin mapped_icon {
-  --icon-default: var(--color-neutral-forground);
-  --icon-primary: var(--color-primary-default);
-  --icon-info: var(--color-info-default);
-  --icon-success: var(--color-success-default);
-  --icon-warning: var(--color-warning-default);
-  --icon-danger: var(--color-danger-default);
-  --icon-disabled: var(--color-neutral-default);
-}
+// ---------------------------------------------
+// bind defaults
+// ---------------------------------------------
 
-@mixin mapped_border {
-  --border-default: var(--color-neutral-forground);
-  --border-primary: var(--color-primary-default);
-  --border-info: var(--color-info-default);
-  --border-success: var(--color-success-default);
-  --border-warning: var(--color-warning-default);
-  --border-danger: var(--color-danger-default);
-  --border-disabled: var(--color-neutral-default);
-}
+:root {
+  @extend .ui-dark;
+  @extend .blue;
 
-@mixin mapped {
-  @include mapped_text;
-  @include mapped_surface;
-  @include mapped_icon;
-  @include mapped_border;
-  @include mapped_action;
+  // colors
+  @include bind_alias("info", "blue");
+  @include bind_alias("success", "green");
+  @include bind_alias("warning", "peach");
+  @include bind_alias("danger", "red");
+  
+  // misc
+  --surface-crust: var(--color-gray-1000);
+  --surface-mantle: var(--color-gray-950);
+  --surface-base: var(--color-gray-900);
+  --color-text: var(--color-gray-0);
+
+  // props
+  background-color: var(--surface-crust);
+  color: var(--color-text);
 }

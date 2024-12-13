@@ -12,23 +12,3 @@ body {
   width: 100%;
   height: 100%;
 }
-
-// -----------------------------------------------
-// color
-// -----------------------------------------------
-
-.ui-light {
-  @include color.latte;
-}
-
-.ui-dark, :root {
-  @include color.mocha;
-}
-
-:root {
-  @include color.alias;
-  @include color.mapped;
-
-  background-color: var(--surface-crust);
-  color: var(--text-body);
-}

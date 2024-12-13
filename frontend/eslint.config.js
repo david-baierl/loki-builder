@@ -4,7 +4,7 @@ import solid from 'eslint-plugin-solid'
 
 export default tseslint.config(
   {
-    ignores: ['gen/*'],
+    ignores: ['gen/*', 'dist/*'],
   },
   tseslint.configs.recommended,
   solid.configs['flat/typescript'],
