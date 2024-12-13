@@ -1,7 +1,8 @@
+import path from 'path'
 import { defineConfig } from 'vite'
 import solid from 'vite-plugin-solid'
+
 import linaria from '@wyw-in-js/vite'
-import path from 'path'
 
 const host = process.env.TAURI_DEV_HOST
 
@@ -14,8 +15,10 @@ export default defineConfig(async () => ({
 
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, './src'),
+      '@debug': path.resolve(__dirname, './src/debug'),
+      '@utils': path.resolve(__dirname, './src/utils'),
       '@tauri': path.resolve(__dirname, './gen/tauri.ts'),
+      '~': path.resolve(__dirname, './src'),
     },
   },
 

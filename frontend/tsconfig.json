@@ -5,7 +5,7 @@
     "module": "ESNext",
     "baseUrl": ".",
     "lib": [
-      "ES2020",
+      "ESNext",
       "DOM",
       "DOM.Iterable"
     ],
@@ -26,11 +26,17 @@
       "vite/client"
     ],
     "paths": {
-      "~/*": [
-        "src/*"
+      "@debug/*": [
+        "src/debug/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ],
       "@tauri": [
         "gen/tauri.ts"
+      ],
+      "~/*": [
+        "src/*"
       ],
     }
   },
