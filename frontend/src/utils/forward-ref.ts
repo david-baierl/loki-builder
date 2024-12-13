@@ -1,5 +1,9 @@
 import { JSX } from 'solid-js'
 
+// ----------------------------------------------
+// @TODO: implement a working version
+// ----------------------------------------------
+
 type ForwardRef<E extends Element = Element> = Partial<(
   JSX.DirectiveAttributes &
   JSX.DirectiveFunctionAttributes<E> &
@@ -8,6 +12,7 @@ type ForwardRef<E extends Element = Element> = Partial<(
   JSX.OnCaptureAttributes<E> &
 
   // wont work because there are empty
+  // @TODO: fill?
   // JSX.PropAttributes &
   // JSX.AttrAttributes &
   // JSX.BoolAttributes &
@@ -19,8 +24,9 @@ type Forward<K> = K extends `${string}:${string}` | 'ref' ? K : never
 type NonForward<K> = K extends `${string}:${string}` | 'ref' ? never : K
 
 export const forwardRef = <T extends ForwardRef<any> & object>(props: T) => {
-  // manual call Directives
+  // @TODO: manual call Directives ?
 
+  // @TODO: cleanup that mess
   return [
     new Proxy(props, {
       get: (obj: any, key) => {

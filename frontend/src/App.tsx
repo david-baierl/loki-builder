@@ -1,15 +1,19 @@
-import { commands, events } from '@tauri'
-import { createSignal } from 'solid-js'
 import './App.css'
-import Palette from './utils/palette'
+
+import Palette from '@debug/palette'
+import {
+  commands,
+  events,
+} from '@tauri'
+import { signal } from '@utils/signals'
 
 function App() {
-  const [greetMsg, setGreetMsg] = createSignal('')
-  const [name, setName] = createSignal('')
+  const greetMsg = signal('')
+  const name = signal('')
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await commands.greet(name()))
+    greetMsg.set(await commands.greet(name()))
     await events.demoEvent.emit('hello event')
   }
 
@@ -26,7 +30,7 @@ function App() {
       >
         <input
           id="greet-input"
-          onChange={e => setName(e.currentTarget.value)}
+          onChange={e => name.set(e.currentTarget.value)}
           placeholder="Enter a name..."
         />
         <button type="submit">Greet</button>

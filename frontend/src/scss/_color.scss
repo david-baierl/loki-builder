@@ -151,48 +151,50 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
   --text-warning: var(--warning-default);
   --text-danger: var(--danger-default);
   --text-disabled: var(--neutral-default);
+}
 
+@mixin mapped_action {
   // action primary
-  --text-action-primary-default: var(--primary-default);
-  --text-action-primary-hover: var(--primary-600);
-  --text-action-primary-focus: var(--primary-600);
-  --text-action-primary-active: var(--primary-700);
-  --text-action-primary-disabled: var(--neutral-default);
+  --action-primary-default: var(--primary-default);
+  --action-primary-hover: var(--primary-600);
+  --action-primary-focus: var(--primary-600);
+  --action-primary-active: var(--primary-700);
+  --action-primary-disabled: var(--neutral-default);
 
   // action info
-  --text-action-info-default: var(--info-default);
-  --text-action-info-hover: var(--info-600);
-  --text-action-info-focus: var(--info-600);
-  --text-action-info-active: var(--info-700);
-  --text-action-info-disabled: var(--neutral-default);
+  --action-info-default: var(--info-default);
+  --action-info-hover: var(--info-600);
+  --action-info-focus: var(--info-600);
+  --action-info-active: var(--info-700);
+  --action-info-disabled: var(--neutral-default);
 
   // action success
-  --text-action-success-default: var(--success-default);
-  --text-action-success-hover: var(--success-600);
-  --text-action-success-focus: var(--success-600);
-  --text-action-success-active: var(--success-700);
-  --text-action-success-disabled: var(--neutral-default);
+  --action-success-default: var(--success-default);
+  --action-success-hover: var(--success-600);
+  --action-success-focus: var(--success-600);
+  --action-success-active: var(--success-700);
+  --action-success-disabled: var(--neutral-default);
 
   // action warning
-  --text-action-warning-default: var(--warning-default);
-  --text-action-warning-hover: var(--warning-600);
-  --text-action-warning-focus: var(--warning-600);
-  --text-action-warning-active: var(--warning-700);
-  --text-action-warning-disabled: var(--neutral-default);
+  --action-warning-default: var(--warning-default);
+  --action-warning-hover: var(--warning-600);
+  --action-warning-focus: var(--warning-600);
+  --action-warning-active: var(--warning-700);
+  --action-warning-disabled: var(--neutral-default);
 
   // action danger
-  --text-action-danger-default: var(--danger-default);
-  --text-action-danger-hover: var(--danger-600);
-  --text-action-danger-focus: var(--danger-600);
-  --text-action-danger-active: var(--danger-700);
-  --text-action-danger-disabled: var(--neutral-default);
+  --action-danger-default: var(--danger-default);
+  --action-danger-hover: var(--danger-600);
+  --action-danger-focus: var(--danger-600);
+  --action-danger-active: var(--danger-700);
+  --action-danger-disabled: var(--neutral-default);
 
   // action on
-  --text-action-on-default: var(--neutral-800);
-  --text-action-on-hover: var(--neutral-800);
-  --text-action-on-focus: var(--neutral-800);
-  --text-action-on-active: var(--neutral-800);
-  --text-action-on-disabled: var(--neutral-800);
+  --action-on-default: var(--neutral-800);
+  --action-on-hover: var(--neutral-800);
+  --action-on-focus: var(--neutral-800);
+  --action-on-active: var(--neutral-800);
+  --action-on-disabled: var(--neutral-800);
 }
 
 @mixin mapped_surface {
@@ -206,41 +208,6 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
   --surface-warning: var(--warning-900);
   --surface-danger: var(--danger-900);
   --surface-disabled: var(--neutral-700);
-
-  // action primary
-  --surface-action-primary-default: var(--primary-default);
-  --surface-action-primary-hover: var(--primary-600);
-  --surface-action-primary-focus: var(--primary-600);
-  --surface-action-primary-active: var(--primary-700);
-  --surface-action-primary-disabled: var(--neutral-default);
-
-  // action info
-  --surface-action-info-default: var(--info-default);
-  --surface-action-info-hover: var(--info-600);
-  --surface-action-info-focus: var(--info-600);
-  --surface-action-info-active: var(--info-700);
-  --surface-action-info-disabled: var(--neutral-default);
-
-  // action success
-  --surface-action-success-default: var(--success-default);
-  --surface-action-success-hover: var(--success-600);
-  --surface-action-success-focus: var(--success-600);
-  --surface-action-success-active: var(--success-700);
-  --surface-action-success-disabled: var(--neutral-default);
-
-  // action warning
-  --surface-action-warning-default: var(--warning-default);
-  --surface-action-warning-hover: var(--warning-600);
-  --surface-action-warning-focus: var(--warning-600);
-  --surface-action-warning-active: var(--warning-700);
-  --surface-action-warning-disabled: var(--neutral-default);
-
-  // action danger
-  --surface-action-danger-default: var(--danger-default);
-  --surface-action-danger-hover: var(--danger-600);
-  --surface-action-danger-focus: var(--danger-600);
-  --surface-action-danger-active: var(--danger-700);
-  --surface-action-danger-disabled: var(--neutral-default);
 }
 
 @mixin mapped_icon {
@@ -261,41 +228,6 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
   --border-warning: var(--warning-default);
   --border-danger: var(--danger-default);
   --border-disabled: var(--neutral-default);
-
-  // action primary
-  --border-action-primary-default: var(--primary-default);
-  --border-action-primary-hover: var(--primary-600);
-  --border-action-primary-focus: var(--primary-600);
-  --border-action-primary-active: var(--primary-700);
-  --border-action-primary-disabled: var(--neutral-default);
-
-  // action info
-  --border-action-info-default: var(--info-default);
-  --border-action-info-hover: var(--info-600);
-  --border-action-info-focus: var(--info-600);
-  --border-action-info-active: var(--info-700);
-  --border-action-info-disabled: var(--neutral-default);
-
-  // action success
-  --border-action-success-default: var(--success-default);
-  --border-action-success-hover: var(--success-600);
-  --border-action-success-focus: var(--success-600);
-  --border-action-success-active: var(--success-700);
-  --border-action-success-disabled: var(--neutral-default);
-
-  // action warning
-  --border-action-warning-default: var(--warning-default);
-  --border-action-warning-hover: var(--warning-600);
-  --border-action-warning-focus: var(--warning-600);
-  --border-action-warning-active: var(--warning-700);
-  --border-action-warning-disabled: var(--neutral-default);
-
-  // action danger
-  --border-action-danger-default: var(--danger-default);
-  --border-action-danger-hover: var(--danger-600);
-  --border-action-danger-focus: var(--danger-600);
-  --border-action-danger-active: var(--danger-700);
-  --border-action-danger-disabled: var(--neutral-default);
 }
 
 @mixin mapped {
@@ -303,4 +235,5 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
   @include mapped_surface;
   @include mapped_icon;
   @include mapped_border;
+  @include mapped_action;
 }

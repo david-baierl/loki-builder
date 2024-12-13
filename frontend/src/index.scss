@@ -1,13 +1,5 @@
 @use "./scss/color";
 
-.ui-light {
-  @include color.latte;
-}
-
-.ui-dark {
-  @include color.mocha;
-}
-
 // -----------------------------------------------
 // base
 // -----------------------------------------------
@@ -21,19 +13,22 @@ body {
   height: 100%;
 }
 
-:root {
-  @extend .ui-dark;
+// -----------------------------------------------
+// color
+// -----------------------------------------------
+
+.ui-light {
+  @include color.latte;
+}
+
+.ui-dark, :root {
+  @include color.mocha;
 }
 
 :root {
   @include color.alias;
-}
-
-:root {
   @include color.mapped;
-}
 
-:root {
   background-color: var(--surface-crust);
   color: var(--text-body);
 }
