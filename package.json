@@ -11,6 +11,6 @@
     "build": "pnpm deep build"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2"
+    "@tauri-apps/cli": "^2.2.4"
   }
 }
