@@ -21,6 +21,8 @@ export default tseslint.config(
       '@stylistic/jsx-one-expression-per-line': 0,
       '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-namespace': 0,
+      '@typescript-eslint/no-unused-expressions': 0,
     },
   },
 )

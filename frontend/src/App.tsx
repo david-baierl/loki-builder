@@ -5,7 +5,17 @@ import {
   commands,
   events,
 } from '@tauri'
+import { default_value } from '@utils/directives'
+import {
+  forwardRef,
+  ForwardRef,
+} from '@utils/forward-ref'
 import { signal } from '@utils/signals'
+
+const MyInput = (props: ForwardRef<HTMLInputElement>) => {
+  const forwarded = forwardRef(props)
+  return <input {...forwarded} />
+}
 
 function App() {
   const greetMsg = signal('')
@@ -19,8 +29,11 @@ function App() {
 
   return (
     <main class="container">
-      <Palette />
 
+      <input use:default_value on:change={() => console.log('native')} />
+      <MyInput use:default_value on:change={() => console.log('custom')} />
+
+      <Palette />
       <form
         class="row"
         onSubmit={(e) => {
@@ -41,3 +54,6 @@ function App() {
 }
 
 export default App
+
+// use:directives
+default_value
