@@ -17,12 +17,55 @@ export default tseslint.config(
   }),
   {
     rules: {
+      // ---------------------------------------------------
+      // misc
+      // ---------------------------------------------------
+
+      // this is only checking reactivity with a naming convention
+      // this is more anoying than helpful
       'solid/reactivity': 0,
+
       '@stylistic/jsx-one-expression-per-line': 0,
       '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-namespace': 0,
       '@typescript-eslint/no-unused-expressions': 0,
+
+      // ---------------------------------------------------
+      // file and folder structure
+      // ---------------------------------------------------
+
+      'no-restricted-imports': ['error', {
+        patterns: [{
+          group: [
+            // forbid accesses to non exported private children
+            '*/*/*',
+
+            // allow index files of all types
+            // that can not be exportable elsewhere (like css)
+            '!*/*/index.*',
+
+            // allow type imports
+            // for some circular dependency problems that are caused by barrel files
+            '!**/types',
+
+            // allow absolut paths from the src root,
+            // there are some cases there this is nessesary
+            '!~/**',
+
+            // ignore debug paths
+            '!@debug/**',
+
+            // but still block everything that is starting with an underscore
+            '*/**/_*',
+          ],
+          message: [
+            '',
+            'importing private child modules is forbidden,',
+            'try exporting modules to make them public',
+          ].join('\n'),
+        }],
+      }],
     },
   },
 )

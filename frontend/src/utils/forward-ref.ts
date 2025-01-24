@@ -15,14 +15,14 @@ export type ForwardRef<E extends Element = Element> = Partial<(
   // JSX.AttrAttributes &
   // JSX.BoolAttributes &
 
-  { ref: (ref: E) => void }
+  { ref: (element: E) => void }
 )>
 
 type ForwardKey<K> = K extends `use:${string}` ? never : (K extends `${string}:${string}` ? K : never)
-type ForwardElement<T extends ForwardRef<any>> = T extends ForwardRef<infer R> ? R : never
+type ForwardedElement<T extends ForwardRef<any>> = T extends ForwardRef<infer R> ? R : never
 type Forwarded<T extends ForwardRef<any>> = (
   { [K in keyof T as ForwardKey<K>]: T[K] } &
-  { ref: (ref: ForwardElement<T>) => void }
+  { ref: (element: ForwardedElement<T>) => void }
 )
 
 const isForwardableKey = (key: string | symbol) => (
@@ -40,7 +40,7 @@ const isForwardableKey = (key: string | symbol) => (
  * @example
  * ```tsx
  * function MyInput(props: ForwardRef<HTMLInputElement>) {
- *   const [ref, setRef] = createSignal<HTMLInputElement>()
+ *   const [ref, setRef] = createSignal<HTMLInputElement>() // optional - will be called before the external setRef
  *   const forwarded = forwardRef(props, setRef)
  *
  *   return <input {...forwarded} />
@@ -48,18 +48,19 @@ const isForwardableKey = (key: string | symbol) => (
  *
  * function Component() {
  *   return <MyInput
- *     use:model={true}
- *     on:click={event => { ... }}
- *     ref={input => { ... }}
+ *     ref={input => { ... }} // ref - will be called after the internal setRef
+ *     use:model={true} // custom directives
+ *     on:click={event => { ... }} // event binding
+ *     // ect ...
  *   />
  * }
  * ```
  */
 export const forwardRef = <T extends ForwardRef<any>>(
   props: T,
-  setRef?: (element: ForwardElement<T>) => void,
+  setRef?: (element: ForwardedElement<T>) => void,
 ) => {
-  const ref = (element: ForwardElement<T>) => {
+  const ref = (element: ForwardedElement<T>) => {
     setRef?.(element)
     props.ref?.(element)
 

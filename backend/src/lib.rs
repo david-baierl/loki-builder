@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
-use specta_typescript::Typescript;
 use specta::Type;
+use specta_typescript::Typescript;
 use tauri_specta::{collect_commands, collect_events, Builder, Event};
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -26,6 +26,7 @@ pub fn run() {
 
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
+        .plugin(tauri_plugin_os::init())
         .invoke_handler(builder.invoke_handler())
         .setup(move |app| {
             builder.mount_events(app);

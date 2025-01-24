@@ -32,6 +32,7 @@ export function fromProxy<T extends object>(props: T): SignalGetters<T> {
 /**
  * @warn
  * - only use this inside JSX ¯\\_(ツ)_/¯ don't ask why
+ *   - spreading properties are only realy reactive in JSX
  * - never add or remove properties dynamically. \
  *   to remove a value: use `undefined` instead. \
  *   otherwise reactivity will break

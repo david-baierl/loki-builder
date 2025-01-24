@@ -12,12 +12,15 @@ import {
 } from '@utils/forward-ref'
 import { signal } from '@utils/signals'
 
-const MyInput = (props: ForwardRef<HTMLInputElement>) => {
+// use:directives
+default_value
+
+function MyInput(props: ForwardRef<HTMLInputElement>) {
   const forwarded = forwardRef(props)
   return <input {...forwarded} />
 }
 
-function App() {
+export function App() {
   const greetMsg = signal('')
   const name = signal('')
 
@@ -52,8 +55,3 @@ function App() {
     </main>
   )
 }
-
-export default App
-
-// use:directives
-default_value
