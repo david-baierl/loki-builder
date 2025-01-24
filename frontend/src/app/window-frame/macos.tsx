@@ -3,8 +3,6 @@ import { ParentProps } from 'solid-js'
 import { css } from '@linaria/core'
 import { fromProxy } from '@utils/proxy'
 
-
-
 const conatiner = css`
   // @TODO
 `
