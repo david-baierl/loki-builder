@@ -1,5 +1,5 @@
 import {
-  _mutateGetter,
+  _mutate_getter,
   SignalGetter,
 } from './signals'
 
@@ -15,14 +15,14 @@ export type SignalGetters<T extends object> = {
  *
  * @example
  * ```tsx
- * const { foo, bar, ...others } = fromProxy(props)
+ * const { foo, bar, ...others } = from_proxy(props)
  * ```
  */
-export function fromProxy<T extends object>(props: T): SignalGetters<T> {
+export function from_proxy<T extends object>(props: T): SignalGetters<T> {
   return new Proxy(props, {
     get(obj, key) {
       const getter = () => obj[key as keyof typeof obj]
-      _mutateGetter(getter)
+      _mutate_getter(getter)
 
       return getter
     },
@@ -39,10 +39,10 @@ export function fromProxy<T extends object>(props: T): SignalGetters<T> {
  *
  * @example
  * ```tsx
- * return <Child {...toProxy(props)} />
+ * return <Child {...to_proxy(props)} />
  * ```
  */
-export function toProxy<T extends object>(props: SignalGetters<T>): T {
+export function to_proxy<T extends object>(props: SignalGetters<T>): T {
   return new Proxy(props, {
     get(obj, key) {
       return obj[key as keyof typeof obj]?.()

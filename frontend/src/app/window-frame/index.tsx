@@ -2,7 +2,7 @@ import { ParentProps } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 
 import { type as os_type } from '@tauri-apps/plugin-os'
-import { fromProxy } from '@utils/proxy'
+import { from_proxy } from '@utils/proxy'
 
 import { MacOSFrame } from './macos'
 import { WindowsFrame } from './windows'
@@ -18,7 +18,7 @@ function get_frame() {
 }
 
 export function WindowFrame(props: ParentProps) {
-  const { children } = fromProxy(props)
+  const { children } = from_proxy(props)
 
   return (
     <Dynamic component={get_frame()}>

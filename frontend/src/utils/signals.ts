@@ -67,7 +67,9 @@ export type Signal<T> = (
 // ---------------------------------------------
 
 /** @internal */
-export function _mutateGetter<T>(getter: Accessor<T>): asserts getter is SignalGetter<T> {
+export function _mutate_getter<T>(
+  getter: Accessor<T>,
+): asserts getter is SignalGetter<T> {
   Object.defineProperty(getter, 'value', {
     enumerable: true,
     get: getter,
@@ -80,7 +82,10 @@ export function _mutateGetter<T>(getter: Accessor<T>): asserts getter is SignalG
 }
 
 /** @internal */
-function _mutateSetter<T>(getter: Accessor<T>, setter: Setter<T>): asserts setter is SignalSetter<T> {
+function _mutate_setter<T>(
+  getter: Accessor<T>,
+  setter: Setter<T>,
+): asserts setter is SignalSetter<T> {
   Object.defineProperty(setter, 'value', {
     enumerable: true,
     get: () => untrack(getter),
@@ -93,7 +98,7 @@ function _mutateSetter<T>(getter: Accessor<T>, setter: Setter<T>): asserts sette
 }
 
 /** @internal */
-function _mutateSignal<T>(
+function _mutate_signal<T>(
   accessor: Accessor<T>,
   getter: SignalGetter<T>,
   setter: SignalSetter<T>,
@@ -114,15 +119,14 @@ function _mutateSignal<T>(
   })
 }
 
-export function toSignal<T>(signal: SolidSignal<T>): Signal<T> {
+export function to_signal<T>(signal: SolidSignal<T>): Signal<T> {
   const [getter, setter] = signal
 
-  _mutateSetter(getter, setter)
-  _mutateGetter(getter)
+  _mutate_setter(getter, setter)
+  _mutate_getter(getter)
 
-  // wrap getter in a new reference
   const _signal: Accessor<T> = () => getter()
-  _mutateSignal(_signal, getter, setter)
+  _mutate_signal(_signal, getter, setter)
 
   return _signal
 }
@@ -130,7 +134,7 @@ export function toSignal<T>(signal: SolidSignal<T>): Signal<T> {
 export function signal<T>(init: T, options?: SignalOptions<T>): Signal<T>
 export function signal<T>(init?: undefined, options?: SignalOptions<T>): Signal<T | undefined>
 export function signal<T>(init?: T, options?: SignalOptions<T>): Signal<T> {
-  return toSignal(createSignal(init as T, options))
+  return to_signal(createSignal(init as T, options))
 }
 
 // ---------------------------------------------
@@ -153,7 +157,7 @@ export function memo<Next extends Prev, Init, Prev>(
   options?: MemoOptions<Next>,
 ): SignalGetter<Next> {
   const getter = createMemo(fn, value, options)
-  _mutateGetter(getter)
+  _mutate_getter(getter)
 
   return getter
 }

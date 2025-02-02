@@ -1,14 +1,14 @@
 import { ParentProps } from 'solid-js'
 
 import { css } from '@linaria/core'
-import { fromProxy } from '@utils/proxy'
+import { from_proxy } from '@utils/proxy'
 
 const conatiner = css`
   // @TODO
 `
 
 export function MacOSFrame(props: ParentProps) {
-  const { children } = fromProxy(props)
+  const { children } = from_proxy(props)
 
   return (
     <div class={conatiner}>
