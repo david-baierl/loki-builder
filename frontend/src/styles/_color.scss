@@ -103,7 +103,7 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
   --color-#{$target_name}-800: var(--color-#{$source_name}-800);
   --color-#{$target_name}-900: var(--color-#{$source_name}-900);
   --color-#{$target_name}-950: var(--color-#{$source_name}-950);
-  --color-#{$target_name}-default: var(--color-#{$target_name}-500);
+  --color-#{$target_name}-default: var(--color-#{$source_name}-500);
 
   @if $source_name != "gray" {
     --color-#{$target_name}-A500: var(--color-#{$source_name}-A500);
@@ -133,7 +133,7 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
 // ---------------------------------------------
 
 :root {
-  @extend .ui-dark;
+  @extend .ui-light;
   @extend .blue;
 
   // colors
