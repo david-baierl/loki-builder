@@ -1,21 +1,37 @@
 import { JSX } from 'solid-js'
+import {
+  cx,
+  CXProp,
+} from '~utils/cx'
 import { from_proxy } from '~utils/proxy'
 
 import { css } from '@linaria/core'
 
-const conatiner = css`
+// ----------------------------------------------------
+// styles
+// ----------------------------------------------------
+
+const conatiner_class = css`
   // @TODO
 `
 
-interface [FTName | pascalcase]Props {
+// ----------------------------------------------------
+// properties
+// ----------------------------------------------------
+
+interface [FTName | pascalcase]Props extends CXProp {
   children?: JSX.Element
 }
 
+// ----------------------------------------------------
+// component
+// ----------------------------------------------------
+
 export function [FTName | pascalcase](props: [FTName | pascalcase]Props) {
-  const { children } = from_proxy(props)
+  const { children, class: cx_class } = from_proxy(props)
 
   return (
-    <div class={conatiner}>
+    <div class={cx(conatiner_class, cx_class())}>
       {children()}
     </div>
   )
