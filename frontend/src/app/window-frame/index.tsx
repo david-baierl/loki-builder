@@ -1,8 +1,8 @@
 import { ParentProps } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
+import { from_proxy } from '~utils/proxy'
 
 import { type as os_type } from '@tauri-apps/plugin-os'
-import { from_proxy } from '@utils/proxy'
 
 import { MacOSFrame } from './macos'
 import { WindowsFrame } from './windows'
