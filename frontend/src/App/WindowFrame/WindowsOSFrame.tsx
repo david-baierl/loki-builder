@@ -4,7 +4,8 @@ import { from_proxy } from '~utils/proxy'
 import { css } from '@linaria/core'
 
 const conatiner = css`
-  // @TODO
+  width: 100%;
+  height: 100%;
 `
 
 export function WindowsOSFrame(props: ParentProps) {
