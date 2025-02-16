@@ -1,6 +1,6 @@
 import { JSX } from 'solid-js'
 
-import { directives } from '@utils/directives'
+import { directives } from './directives'
 
 export type ForwardRef<E extends Element = Element> = Partial<(
   JSX.DirectiveAttributes &

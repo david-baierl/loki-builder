@@ -1,16 +1,16 @@
 import './App.css'
 
-import Palette from '@debug/palette'
+import Palette from '~debug/palette'
 import {
   commands,
   events,
-} from '@tauri'
-import { default_value } from '@utils/directives'
+} from '~tauri'
+import { default_value } from '~utils/directives'
 import {
   forwardRef,
   ForwardRef,
-} from '@utils/forward-ref'
-import { signal } from '@utils/signals'
+} from '~utils/forward-ref'
+import { signal } from '~utils/signals'
 
 // use:directives
 default_value

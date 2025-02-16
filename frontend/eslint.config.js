@@ -53,8 +53,11 @@ export default tseslint.config(
             // there are some cases there this is nessesary
             '!~/**',
 
+            // allow libaries
+            '!@*/**',
+
             // ignore debug paths
-            '!@debug/**',
+            '!~debug/**',
 
             // but still block everything that is starting with an underscore
             '*/**/_*',

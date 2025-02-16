@@ -1,7 +1,7 @@
 import { ParentProps } from 'solid-js'
+import { from_proxy } from '~utils/proxy'
 
 import { css } from '@linaria/core'
-import { from_proxy } from '@utils/proxy'
 
 const conatiner = css`
   // @TODO
