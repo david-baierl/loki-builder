@@ -7,6 +7,6 @@ declare module 'solid-js' {
   }
 }
 
-export const default_value = (element: HTMLInputElement) => {
+export function default_value(element: HTMLInputElement) {
   element.value = 'default value'
 }

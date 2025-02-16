@@ -7,16 +7,16 @@ import {
 } from '~tauri'
 import { default_value } from '~utils/directives'
 import {
-  forwardRef,
+  forward_ref,
   ForwardRef,
-} from '~utils/forward-ref'
+} from '~utils/forward_ref'
 import { signal } from '~utils/signals'
 
 // use:directives
 default_value
 
 function MyInput(props: ForwardRef<HTMLInputElement>) {
-  const forwarded = forwardRef(props)
+  const forwarded = forward_ref(props)
   return <input {...forwarded} />
 }
 

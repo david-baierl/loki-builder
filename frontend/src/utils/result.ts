@@ -19,7 +19,7 @@ export type Task<T, E = unknown> = Promise<Result<T, E>>
 // helper
 // --------------------------------------------------------------
 
-export function trySync<T>(fn: () => T): Result<T> {
+export function try_sync<T>(fn: () => T): Result<T> {
   try {
     return [, fn()]
   }
@@ -28,7 +28,7 @@ export function trySync<T>(fn: () => T): Result<T> {
   }
 }
 
-export async function tryAsync<T>(fn: () => Promise<T>): Task<T> {
+export async function try_async<T>(fn: () => Promise<T>): Task<T> {
   try {
     return [, await fn()]
   }

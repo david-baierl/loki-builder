@@ -25,7 +25,7 @@ type Forwarded<T extends ForwardRef<any>> = (
   { ref: (element: ForwardedElement<T>) => void }
 )
 
-const isForwardableKey = (key: string | symbol) => (
+const is_forwardable_key = (key: string | symbol) => (
   typeof key === 'string'
   && key !== 'ref'
   && !key.startsWith('use:')
@@ -56,7 +56,7 @@ const isForwardableKey = (key: string | symbol) => (
  * }
  * ```
  */
-export const forwardRef = <T extends ForwardRef<any>>(
+export const forward_ref = <T extends ForwardRef<any>>(
   props: T,
   setRef?: (element: ForwardedElement<T>) => void,
 ) => {
@@ -75,9 +75,9 @@ export const forwardRef = <T extends ForwardRef<any>>(
   return new Proxy(props, {
     get: (obj, key) => {
       if (key === 'ref') return ref
-      if (isForwardableKey(key)) return obj[key as keyof T]
+      if (is_forwardable_key(key)) return obj[key as keyof T]
     },
-    ownKeys: obj => [...Object.keys(obj).filter(isForwardableKey), 'ref'],
+    ownKeys: obj => [...Object.keys(obj).filter(is_forwardable_key), 'ref'],
     getOwnPropertyDescriptor: (obj, key) => {
       if (key === 'ref') return { configurable: true, enumerable: true, value: ref }
       return Object.getOwnPropertyDescriptor(obj, key)

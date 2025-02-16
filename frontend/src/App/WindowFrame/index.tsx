@@ -4,8 +4,8 @@ import { from_proxy } from '~utils/proxy'
 
 import { type as os_type } from '@tauri-apps/plugin-os'
 
-import { MacOSFrame } from './macos'
-import { WindowsFrame } from './windows'
+import { MacOSFrame } from './MacOSFrame'
+import { WindowsOSFrame } from './WindowsOSFrame'
 
 function get_frame() {
   switch (os_type()) {
@@ -13,7 +13,7 @@ function get_frame() {
       return MacOSFrame
     case 'windows':
     default:
-      return WindowsFrame
+      return WindowsOSFrame
   }
 }
 

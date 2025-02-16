@@ -1,0 +1,17 @@
+{
+  "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.type": "newLineEachExpressionAfterCountLimitExceptIfOnlyOne",
+  "importSorter.importStringConfiguration.tabSize": 2,
+  "importSorter.importStringConfiguration.trailingComma": "multiLine",
+  "importSorter.importStringConfiguration.hasSemicolon": false,
+  "importSorter.sortConfiguration.removeUnusedDefaultImports": true,
+  "importSorter.sortConfiguration.removeUnusedImports": true,
+  "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 1,
+  "files.associations": {
+    "**/.fttemplates/*/*.tsx": "plaintext",
+    "**/.fttemplates/*/*.ts": "plaintext"
+  },
+  "javascript.preferences.autoImportFileExcludePatterns": [
+    ".fttemplates/**"
+  ]
+}
