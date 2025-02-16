@@ -25,11 +25,16 @@ export default tseslint.config(
       // this is more anoying than helpful
       'solid/reactivity': 0,
 
+      // disable other common rules
       '@stylistic/jsx-one-expression-per-line': 0,
       '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-namespace': 0,
       '@typescript-eslint/no-unused-expressions': 0,
+      '@typescript-eslint/no-empty-object-type': 0,
+
+      // enamble more strict rules
+      '@typescript-eslint/no-shadow': 'error',
 
       // ---------------------------------------------------
       // file and folder structure
@@ -61,6 +66,7 @@ export default tseslint.config(
 
             // but still block everything that is starting with an underscore
             '*/**/_*',
+            '!./_*',
           ],
           message: [
             '',
