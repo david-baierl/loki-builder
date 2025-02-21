@@ -1,5 +1,8 @@
 import path from 'path'
-import { defineConfig } from 'vite'
+import {
+  defineConfig,
+  UserConfig,
+} from 'vite'
 import solid from 'vite-plugin-solid'
 
 import linaria from '@wyw-in-js/vite'
@@ -57,4 +60,4 @@ export default defineConfig(async () => ({
       ignored: ['backend/**/*'],
     },
   },
-}))
+} satisfies UserConfig))
