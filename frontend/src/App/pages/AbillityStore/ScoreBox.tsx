@@ -60,7 +60,7 @@ export function ScoreBox(props: TrapeziodProps) {
     <div class={cx(container_class, cx_class())}>
       <svg
         class={svg_class}
-        viewBox={`0 0 ${SCORE_WIDTH}${SCORE_HEIGHT}`}
+        viewBox={`0 0 ${SCORE_WIDTH} ${SCORE_HEIGHT}`}
         width={SCORE_WIDTH}
         height={SCORE_HEIGHT}
       >
