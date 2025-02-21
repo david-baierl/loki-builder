@@ -10,6 +10,7 @@ const container_class = css`
   height: 100%;
   padding: ${rem(16)};
   gap: ${rem(16)};
+  overflow: auto;
 `
 
 const column_class = css`

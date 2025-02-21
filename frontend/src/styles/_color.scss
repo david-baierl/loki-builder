@@ -161,8 +161,4 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
   --surface-mantle: var(--color-gray-950);
   --surface-base: var(--color-gray-900);
   --color-text: var(--color-gray-0);
-
-  // props
-  background-color: var(--surface-crust);
-  color: var(--color-text);
 }

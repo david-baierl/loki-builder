@@ -28,15 +28,15 @@ export function use<P>(context: Context<P>) {
 export function create_context<P extends object>(name: string, defaultValue: P): Context<P>
 export function create_context<P extends object>(name: string, defaultValue?: P): Context<P | undefined>
 export function create_context<P extends object>(name: string, defaultValue?: P) {
-  const Context = createSolidContext(defaultValue, { name })
+  const Context = createSolidContext(defaultValue as P, { name })
 
   const Provider: Context<P> = (props: P & ParentProps) => {
     const { children, ...others } = from_proxy(props)
 
-    return <Context.Provider value={to_proxy(others as SignalGetters<P>)}children={children()} />
+    return <Context.Provider value={to_proxy(others as SignalGetters<P>)} children={children()} />
   }
 
-  Provider.Context = Context as SolidContext<P>
+  Provider.Context = Context
   Provider.name = name
 
   Provider.Partial = (props: Partial<P> & ParentProps) => {

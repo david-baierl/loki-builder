@@ -1,3 +1,5 @@
+export type Maybe<T> = T | undefined | null
+
 /**
  * an `Any` type that will not pollute every Maybe<Any> Type
  *

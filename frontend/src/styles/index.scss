@@ -4,7 +4,10 @@
 // base
 // -----------------------------------------------
 
-:root,
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
@@ -14,6 +17,7 @@ body,
   height: 100%;
 }
 
-* {
-  box-sizing: border-box;
+body {
+  background-color: var(--surface-crust);
+  color: var(--color-text);
 }

@@ -9,7 +9,7 @@ export function AppProvider(props: ParentProps) {
 
   return (
     <Provide layers={[
-      _props => <LocaleProvider locale="de-DE" {..._props} />,
+      p => <LocaleProvider locale="de-DE" {...p} />,
     ]}>
       {children()}
     </Provide>
