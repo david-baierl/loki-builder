@@ -45,6 +45,7 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
 
 @mixin latte {
   $palette: map.get(catppuccin.$palette, "latte");
+
   // mocha gray 800
   $forground: color.mix($black, $mocha_gray, 60%);
   $background: $white;
@@ -54,19 +55,24 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
 
   // gray
   --color-gray-0: #{$forground};
+
   @include generate_color("gray", $latte_gray, $forground, $background);
+
   --color-gray-1000: #{$background};
 
   // colors
   @each $color_name in $color_names {
     $color: map.get($palette, $color_name);
+
     @include generate_color($color_name, $color, $forground, $background);
+
     --color-#{$color_name}-A500: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $lightness: 10%), rgb)};
   }
 }
 
 @mixin mocha {
   $palette: map.get(catppuccin.$palette, "mocha");
+
   // latte gray 800
   $forground: color.mix($white, $latte_gray, 60%);
   $background: $black;
@@ -76,13 +82,17 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
 
   // gray
   --color-gray-0: #{$forground};
+
   @include generate_color("gray", $mocha_gray, $forground, $background);
+
   --color-gray-1000: #{$background};
 
   // colors
   @each $color_name in $color_names {
     $color: map.get($palette, $color_name);
+
     @include generate_color($color_name, $color, $forground, $background);
+
     --color-#{$color_name}-A500: #{color.to-space(color.adjust(color.to-space($color, lch), $hue: 2, $chroma: 8, $lightness: -10%), rgb)};
   }
 }
@@ -114,15 +124,19 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
 // generate classes
 // ---------------------------------------------
 
+%ui-light,
 .ui-light {
   @include latte;
 }
 
+%ui-dark,
 .ui-dark {
   @include mocha;
 }
 
 @each $color_name in $color_names {
+
+  %#{$color_name},
   .#{$color_name} {
     @include bind_alias("primary", $color_name)
   }
@@ -133,15 +147,15 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
 // ---------------------------------------------
 
 :root {
-  @extend .ui-light;
-  @extend .blue;
+  @extend %ui-light;
+  @extend %blue;
 
   // colors
   @include bind_alias("info", "blue");
   @include bind_alias("success", "green");
   @include bind_alias("warning", "peach");
   @include bind_alias("danger", "red");
-  
+
   // misc
   --surface-crust: var(--color-gray-1000);
   --surface-mantle: var(--color-gray-950);

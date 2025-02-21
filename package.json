@@ -8,9 +8,10 @@
     "deep": "pnpm --recursive --bail --color --reporter append-only",
     "start": "pnpm deep start",
     "dev": "pnpm deep dev",
-    "build": "pnpm deep build"
+    "build": "pnpm deep build",
+    "lint": "pnpm deep lint"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2.2.4"
+    "@tauri-apps/cli": "^2.2.7"
   }
 }

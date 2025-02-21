@@ -1,6 +1,6 @@
-# Tauri + Solid + Typescript
+# Loki Builder
 
-This template should help get you started developing with Tauri, Solid and Typescript in Vite.
+A character builder based on the 2024 Dungeons and Dragons rules
 
 ## Recommended IDE Setup
 
@@ -10,14 +10,26 @@ This template should help get you started developing with Tauri, Solid and Types
 
 ### Dependencies
 
+#### with devcontainer
+
 The `.devcontainer` binds your local `~/.config` folder into the container.
 
 Ensure you have the following elements installed on your host machine,
-otherwise remove the `~/.config`-binding from the `./docker-compose.yml` file.
+otherwise remove the `~/.config`-binding from the `./docker-compose.yml` file and use the container defaults.
 
 - [fish](https://fishshell.com/)
 - [fisher](https://github.com/jorgebucaran/fisher)
   - [jorgebucaran/nvm.fish](https://github.com/jorgebucaran/nvm.fish)
+
+#### local (without devcontainer)
+
+- [nvm](https://github.com/nvm-sh/nvm) (optional)
+  - alternative: [nvm-windows](https://github.com/coreybutler/nvm-windows)
+  - alternative: [jorgebucaran/nvm.fish](https://github.com/jorgebucaran/nvm.fish)
+- [nodejs](https://nodejs.org/en) ^22.11.0
+  - [pnpm](https://pnpm.io/) ^9.13.2
+- [rust](https://www.rust-lang.org/) ^1.80.1
+  - [rustfmt](https://github.com/rust-lang/rustfmt)
 
 ### Install
 

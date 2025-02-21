@@ -13,5 +13,10 @@
   },
   "javascript.preferences.autoImportFileExcludePatterns": [
     ".fttemplates/**"
+  ],
+  "stylelint.validate": [
+    "typescriptreact",
+    "scss",
+    "css"
   ]
 }

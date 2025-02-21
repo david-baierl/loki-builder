@@ -27,6 +27,7 @@ export default tseslint.config(
 
       // disable other common rules
       '@stylistic/jsx-one-expression-per-line': 0,
+      '@stylistic/jsx-closing-bracket-location': 0,
       '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-namespace': 0,

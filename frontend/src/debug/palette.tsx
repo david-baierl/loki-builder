@@ -1,8 +1,14 @@
-import { For, Show } from 'solid-js'
-import { css } from '@linaria/core'
-
-import { Tooltip as ArkTooltip, useTooltip } from '@ark-ui/solid/tooltip'
+import {
+  For,
+  Show,
+} from 'solid-js'
 import { Portal } from 'solid-js/web'
+
+import {
+  Tooltip as ArkTooltip,
+  useTooltip,
+} from '@ark-ui/solid/tooltip'
+import { css } from '@linaria/core'
 
 const colorBox = css`
   all: unset;
