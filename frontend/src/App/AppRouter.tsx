@@ -3,7 +3,7 @@ import {
   Router,
 } from '@solidjs/router'
 
-import { Home } from './pages'
+import { Home } from './views'
 
 export function AppRouter() {
   return (
