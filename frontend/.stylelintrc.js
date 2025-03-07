@@ -27,11 +27,8 @@ export default {
         '*.ts',
         '*.tsx',
       ],
-      customSyntax: '@linaria/postcss-linaria',
+      customSyntax: '@stylelint/postcss-css-in-js',
       rules: {
-        'declaration-property-value-no-unknown': [true, {
-          ignoreProperties: { '/.+/': [/pcss_lin/] },
-        }],
         'no-invalid-double-slash-comments': true,
       },
     },

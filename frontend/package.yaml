@@ -5,8 +5,9 @@ scripts:
   dev: vite
   build: vite build
   serve: vite preview
-  lint: pnpm lint:css
+  lint: pnpm lint:css && pnpm lint:ts
   lint:css: stylelint "**/*.{css,scss,ts,tsx}"
+  lint:ts: eslint .
 dependencies:
   '@ark-ui/solid': ^4.10.1
   '@catppuccin/palette': ^1.7.1
@@ -18,7 +19,7 @@ dependencies:
 devDependencies:
   '@babel/preset-typescript': ^7.26.0
   '@linaria/core': ^6.2.0
-  '@linaria/postcss-linaria': ^6.2.0
+  '@stylelint/postcss-css-in-js': ^0.38.0
   '@stylistic/eslint-plugin': ^4.0.1
   '@types/node': ^22.13.4
   '@typescript-eslint/eslint-plugin': ^8.24.1

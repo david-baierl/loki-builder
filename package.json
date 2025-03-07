@@ -2,8 +2,13 @@
   "name": "loki-builder",
   "version": "0.1.0",
   "description": "",
+  "author": {
+    "name": "David Baierl",
+    "url": "http://david.baierl.dev/"
+  },
   "type": "module",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "deep": "pnpm --recursive --bail --color --reporter append-only",
     "start": "pnpm deep start",
