@@ -15,7 +15,7 @@ import {
 // type
 // ---------------------------------------------
 
-export type SignalGetter<T> = Accessor<T> & {
+export interface SignalGetter<T> extends Accessor<T> {
 
   /** @hint this is tracked */
   get: Accessor<T>
@@ -27,7 +27,7 @@ export type SignalGetter<T> = Accessor<T> & {
   readonly value: T
 }
 
-export type SignalSetter<T> = Setter<T> & {
+export interface SignalSetter<T> extends Setter<T> {
   set: Setter<T>
 
   /** @hint this is untracked */

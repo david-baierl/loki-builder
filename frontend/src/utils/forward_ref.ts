@@ -35,7 +35,9 @@ const is_forwardable_key = (key: string | symbol) => (
 /**
  * will forward every `*:*` property
  *
- * can also manual instantiate custom directives (`use:*`) that are defined in `@utils/directives`
+ * can also manual instantiate custom directives (`use:*`) that are defined in `~utils/directives`
+ *
+ * usefull for forwading references that work with directives
  *
  * @example
  * ```tsx

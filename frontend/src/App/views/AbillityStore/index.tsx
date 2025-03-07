@@ -3,22 +3,14 @@ import { from_proxy } from '~utils/proxy'
 
 import { css } from '@linaria/core'
 
-import {
-  MOD_DIAMETER,
-  ModifierCircle,
-} from './ModifierCircle'
-import {
-  SCORE_WIDTH,
-  ScoreBox,
-} from './ScoreBox'
+import { ModifierCircle } from './ModifierCircle'
+import { ScoreInput } from './ScoreInput'
 
 // ----------------------------------------------------
 // styles
 // ----------------------------------------------------
 
 // @TODO: cleanup styles with design system
-
-const MOD_SCORE_OVERLAP = 8
 
 const container_class = css`
   display: inline-flex;
@@ -32,20 +24,11 @@ const container_class = css`
 `
 
 const wrapper_class = css`
-  position: relative;
-  width: ${rem(MOD_DIAMETER + SCORE_WIDTH - MOD_SCORE_OVERLAP)};
-`
-
-const modifier_class = css`
-  position: relative;
-  z-index: 1;
-`
-
-const score_class = css`
-  position: absolute;
-  left: ${rem(MOD_DIAMETER - MOD_SCORE_OVERLAP)};
-  bottom: ${rem(12)};
-  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: ${rem(8)};
 `
 
 const name_class = css`
@@ -75,8 +58,8 @@ export function AbillityScore(props: AbillityScoreProps) {
       </div>
 
       <div class={wrapper_class}>
-        <ModifierCircle class={modifier_class} score={score()} />
-        <ScoreBox class={score_class} score={score()} />
+        <ModifierCircle score={score()} />
+        <ScoreInput onChange={() => { /* magic */ }} value={score()} />
       </div>
     </div>
   )

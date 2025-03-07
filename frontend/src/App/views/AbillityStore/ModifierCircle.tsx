@@ -24,7 +24,7 @@ const conatinerClass = css`
   border-radius: 50%;
   background: var(--surface-crust);
   font-size: ${rem(28)};
-  border: 4px solid var(--color-gray-800);
+  border: 3px solid var(--color-gray-800);
 `
 
 // ----------------------------------------------------
