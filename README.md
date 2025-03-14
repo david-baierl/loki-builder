@@ -10,16 +10,9 @@ A character builder based on the 2024 Dungeons and Dragons rules
 
 ### Dependencies
 
-#### with devcontainer
+#### with devcontainer (recommended)
 
-The `.devcontainer` binds your local `~/.config` folder into the container.
-
-Ensure you have the following elements installed on your host machine,
-otherwise remove the `~/.config`-binding from the `./docker-compose.yml` file and use the container defaults.
-
-- [fish](https://fishshell.com/)
-- [fisher](https://github.com/jorgebucaran/fisher)
-  - [jorgebucaran/nvm.fish](https://github.com/jorgebucaran/nvm.fish)
+- *no dependencies needed*
 
 #### local (without devcontainer)
 
@@ -34,7 +27,7 @@ otherwise remove the `~/.config`-binding from the `./docker-compose.yml` file an
 ### Install
 
 ```sh
-nvm use && pnpm i --forzen-lockfile
+pnpm i --forzen-lockfile
 ```
 
 ## start dev environment
