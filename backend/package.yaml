@@ -1,4 +1,3 @@
 name: loki-builder/backend
 scripts:
   start: cargo run
-  dev: cargo run
