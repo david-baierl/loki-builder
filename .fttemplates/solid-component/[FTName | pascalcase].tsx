@@ -3,7 +3,7 @@ import {
   cx,
   CXProp,
 } from '~utils/cx'
-import { from_proxy } from '~utils/proxy'
+import { use } from '~utils/use'
 
 import { css } from '@linaria/core'
 
@@ -28,7 +28,7 @@ interface [FTName | pascalcase]Props extends CXProp {
 // ----------------------------------------------------
 
 export function [FTName | pascalcase](props: [FTName | pascalcase]Props) {
-  const { children, class: cx_class } = from_proxy(props)
+  const { children, class: cx_class } = use(props)
 
   return (
     <div class={cx(container_class, cx_class())}>

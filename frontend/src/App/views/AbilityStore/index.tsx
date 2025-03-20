@@ -1,5 +1,5 @@
 import { rem } from '~/styles'
-import { from_proxy } from '~utils/proxy'
+import { use } from '~utils/use'
 
 import { css } from '@linaria/core'
 
@@ -49,7 +49,7 @@ interface AbilityScoreProps {
 // ----------------------------------------------------
 
 export function AbilityScore(props: AbilityScoreProps) {
-  const { name, score } = from_proxy(props)
+  const { name, score } = use(props)
 
   return (
     <div class={container_class}>

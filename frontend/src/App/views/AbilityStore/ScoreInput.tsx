@@ -7,7 +7,7 @@ import {
   forward_ref,
   ForwardRef,
 } from '~utils/forward_ref'
-import { from_proxy } from '~utils/proxy'
+import { use } from '~utils/use'
 
 import {
   NumberInput,
@@ -65,7 +65,7 @@ export function ScoreInput(props: ScoreInputProps) {
 
     input,
     root,
-  } = from_proxy(props)
+  } = use(props)
 
   return (
     <NumberInput.Root

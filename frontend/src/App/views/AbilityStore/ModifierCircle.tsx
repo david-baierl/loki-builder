@@ -3,7 +3,7 @@ import {
   cx,
   CXProp,
 } from '~utils/cx'
-import { from_proxy } from '~utils/proxy'
+import { use } from '~utils/use'
 
 import { css } from '@linaria/core'
 
@@ -40,7 +40,7 @@ interface ModifierCircleProps extends CXProp {
 // ----------------------------------------------------
 
 export function ModifierCircle(props: ModifierCircleProps) {
-  const { class: cx_class, score } = from_proxy(props)
+  const { class: cx_class, score } = use(props)
 
   const modifier = () => Math.floor((score() - 10) / 2)
   const as_string = () => {
