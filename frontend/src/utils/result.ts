@@ -28,12 +28,12 @@ export function ok<T>(value: T): Ok<T> {
 // --- err --- //
 
 // ensures that error is always of type Error
-export function err<E extends Error>(error: E): Err<E>
-export function err<const E extends string>(error: E): Err<Error & { message: E }>
-export function err<E>(error: E): Err<Error & { cause: E }>
-export function err<E>(reason: E): Err<Error> {
+// otherwise throwing an falsy value could break result type discrimination
+export function err<E extends Error>(reason: E): Err<E>
+export function err(reason?: unknown): Err<Error>
+export function err(reason?: unknown): Err<Error> {
   // error
-  // @TODO: replace with Error.isError(reason)
+  // @TODO: Error.isError(reason)
   if (reason instanceof Error) return [reason]
 
   // string
