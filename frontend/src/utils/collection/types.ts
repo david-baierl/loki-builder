@@ -1,4 +1,4 @@
-import { Maybe } from '~utils/types'
+import { Option } from '~utils/types'
 
 export type Collection<T> = T[] | Map<any, T> | Set<T> | Iterable<T>
-export type Collectable<T> = Maybe<T> | Collection<T>
+export type Collectable<T> = Option<T> | Collection<T>

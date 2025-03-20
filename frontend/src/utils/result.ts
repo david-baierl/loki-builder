@@ -2,37 +2,45 @@
 // types
 // --------------------------------------------------------------
 
-export type Resolved<T> = [
+export type Ok<T> = [
   error: undefined,
   value: T,
 ]
 
-export type Rejected<E = unknown> = [
+export type Err<E = unknown> = [
   error: E,
   value?: undefined,
 ]
 
-export type Result<T, E = unknown> = Resolved<T> | Rejected<E>
+export type Result<T, E = unknown> = Ok<T> | Err<E>
 export type Task<T, E = unknown> = Promise<Result<T, E>>
 
 // --------------------------------------------------------------
 // helper
 // --------------------------------------------------------------
 
+export function ok<T = unknown>(value: T): Ok<T> {
+  return [, value]
+}
+
+export function err<E = unknown>(error: E): Err<E> {
+  return [error]
+}
+
 export function try_sync<T>(fn: () => T): Result<T> {
   try {
-    return [, fn()]
+    return ok(fn())
   }
-  catch (err) {
-    return [err]
+  catch (error) {
+    return err(error)
   }
 }
 
 export async function try_async<T>(fn: () => Promise<T>): Task<T> {
   try {
-    return [, await fn()]
+    return ok(await fn())
   }
-  catch (err) {
-    return [err]
+  catch (error) {
+    return err(error)
   }
 }

@@ -2,7 +2,9 @@
 // base types
 // -----------------------------------------------------------------
 
-export type Maybe<T> = T | undefined | null
+export type None = undefined
+export type Some<T> = T
+export type Option<T> = Some<T> | None
 
 /**
  * an `Any` type that will not pollute every Maybe<Any> Type
