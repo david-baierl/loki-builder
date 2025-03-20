@@ -1,4 +1,7 @@
-import { Task } from './result'
+import {
+  err,
+  Task,
+} from './result'
 
 export function sleep(ms: number = 0) {
   return new Promise<void>(resolve => (
@@ -12,7 +15,7 @@ export class TimeoutError extends Error {
   }
 }
 
-export function timeout<T, E = unknown>(
+export function timeout<T, E extends Error = Error>(
   task: Task<T, E>,
   ms: number = 5_000,
 ): Task<T, TimeoutError | E> {
@@ -23,6 +26,6 @@ export function timeout<T, E = unknown>(
 
   return Promise.race<_Race>([
     task,
-    sleep(ms).then(() => [new TimeoutError(ms)]),
+    sleep(ms).then(() => err(new TimeoutError(ms))),
   ])
 }

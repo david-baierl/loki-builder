@@ -15,7 +15,7 @@ export type Option<T> = Some<T> | None
  * mostly usefull when only a kind of truthy/falsy value is needed
  */
 export type Any = (
-  ((...args: any[]) => any)
+  | ((...args: any[]) => any)
   | boolean
   | number
   | bigint
