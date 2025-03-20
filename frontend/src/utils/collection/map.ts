@@ -1,3 +1,5 @@
+import { Some } from '~utils/types'
+
 import { collect } from './collect'
 import { Repeatable } from './repeatable'
 import { Collectable } from './types'
@@ -6,7 +8,7 @@ import { Collectable } from './types'
 // types
 // ---------------------------------------------
 
-export type Collector<T, R> = (value: NonNullable<T>) => Collectable<R>
+export type Collector<T, R> = (value: Some<T>) => Collectable<R>
 type CollectorChain<T, R> = (
   | [Collector<T, any>, ...Collector<any, any>[], Collector<any, R>]
   | [Collector<T, R>]
@@ -20,7 +22,7 @@ type CollectorChain<T, R> = (
 export function* _map<T, R = T>(
   collection: Collectable<T>,
   ...collectors: CollectorChain<T, R>
-): Iterable<NonNullable<R>, void, unknown> {
+): Iterable<Some<R>, void, unknown> {
   const [collector, ...others] = collectors
 
   if (!collector) {
@@ -39,25 +41,25 @@ export function* _map<T, R = T>(
 
 export function map<T>(
   collection: Collectable<T>
-): Repeatable<NonNullable<T>, void, unknown>
+): Repeatable<Some<T>, void, unknown>
 
 export function map<T, R>(
   collection: Collectable<T>,
   collector_r: Collector<T, R>
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, A, R>(
   collection: Collectable<T>,
   collector_a: Collector<T, A>,
   collector_r: Collector<A, R>,
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, A, B, R>(
   collection: Collectable<T>,
   collector_a: Collector<T, A>,
   collector_b: Collector<A, B>,
   collector_R: Collector<B, R>,
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, A, B, C, R>(
   collection: Collectable<T>,
@@ -65,7 +67,7 @@ export function map<T, A, B, C, R>(
   collector_b: Collector<A, B>,
   collector_c: Collector<B, C>,
   collector_r: Collector<C, R>,
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, A, B, C, D, R>(
   collection: Collectable<T>,
@@ -74,7 +76,7 @@ export function map<T, A, B, C, D, R>(
   collector_c: Collector<B, C>,
   collector_d: Collector<C, D>,
   collector_r: Collector<D, R>,
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, A, B, C, D, E, R>(
   collection: Collectable<T>,
@@ -84,7 +86,7 @@ export function map<T, A, B, C, D, E, R>(
   collector_d: Collector<C, D>,
   collector_e: Collector<D, E>,
   collector_r: Collector<E, R>,
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, A, B, C, D, E, F, R>(
   collection: Collectable<T>,
@@ -95,7 +97,7 @@ export function map<T, A, B, C, D, E, F, R>(
   collector_e: Collector<D, E>,
   collector_f: Collector<E, F>,
   collector_r: Collector<F, R>,
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, A, B, C, D, E, F, G, R>(
   collection: Collectable<T>,
@@ -107,7 +109,7 @@ export function map<T, A, B, C, D, E, F, G, R>(
   collector_f: Collector<E, F>,
   collector_g: Collector<F, G>,
   collector_r: Collector<G, R>,
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, A, B, C, D, E, F, G, H, R>(
   collection: Collectable<T>,
@@ -120,12 +122,12 @@ export function map<T, A, B, C, D, E, F, G, H, R>(
   collector_g: Collector<F, G>,
   collector_h: Collector<G, H>,
   collector_r: Collector<H, R>,
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 export function map<T, R>(
   collection: Collectable<T>,
   ...collectors: CollectorChain<T, R>
-): Repeatable<NonNullable<R>, void, unknown>
+): Repeatable<Some<R>, void, unknown>
 
 // ---------------------------------------------
 // implementation

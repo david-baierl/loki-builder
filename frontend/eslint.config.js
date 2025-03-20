@@ -22,7 +22,7 @@ export default tseslint.config(
       // ---------------------------------------------------
 
       // this is only checking reactivity with a naming convention
-      // this is more anoying than helpful
+      // this is more annoying than helpful
       'solid/reactivity': 0,
 
       // disable other common rules
@@ -34,7 +34,7 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-expressions': 0,
       '@typescript-eslint/no-empty-object-type': 0,
 
-      // enamble more strict rules
+      // example more strict rules
       '@typescript-eslint/no-shadow': 'error',
 
       // ---------------------------------------------------
@@ -56,10 +56,10 @@ export default tseslint.config(
             '!**/types',
 
             // allow absolut paths from the src root,
-            // there are some cases there this is nessesary
+            // there are some cases there this is necessary
             '!~/**',
 
-            // allow libaries
+            // allow libraries
             '!@*/**',
 
             // ignore debug paths

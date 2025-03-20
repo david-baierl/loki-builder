@@ -30,8 +30,8 @@ export function use_context<T>(context: Context<T>): T {
   return provided
 }
 
-export function is_context(context: any): context is Context<any> {
-  return CONTEXT_SYMBOL in context
+export function is_context(value: unknown): value is Context<any> {
+  return typeof value === 'function' && CONTEXT_SYMBOL in value
 }
 
 export function create_context<P extends object>(name: string, defaultValue: P): Context<P>

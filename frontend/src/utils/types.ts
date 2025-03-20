@@ -2,8 +2,8 @@
 // base types
 // -----------------------------------------------------------------
 
-export type None = undefined
-export type Some<T> = T
+export type None = undefined | null
+export type Some<T> = NonNullable<T>
 export type Option<T> = Some<T> | None
 
 /**
