@@ -2,7 +2,7 @@ import { rem } from '~/styles'
 
 import { css } from '@linaria/core'
 
-import { AbillityScore } from './AbillityStore'
+import { AbilityScore } from './AbilityStore'
 
 const container_class = css`
   background-color: var(--surface-base);
@@ -30,14 +30,14 @@ export function Home() {
     <div class={container_class}>
       <div class={column_class}>
         <div class={row_class}>
-          <AbillityScore score={17} name="Strength" />
-          <AbillityScore score={14} name="Dexterity" />
-          <AbillityScore score={14} name="Constitution" />
+          <AbilityScore score={17} name="Strength" />
+          <AbilityScore score={14} name="Dexterity" />
+          <AbilityScore score={14} name="Constitution" />
         </div>
         <div class={row_class}>
-          <AbillityScore score={8} name="Intelligence" />
-          <AbillityScore score={12} name="Wisdom" />
-          <AbillityScore score={10} name="Charisma" />
+          <AbilityScore score={8} name="Intelligence" />
+          <AbilityScore score={12} name="Wisdom" />
+          <AbilityScore score={10} name="Charisma" />
         </div>
       </div>
     </div>

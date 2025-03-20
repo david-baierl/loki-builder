@@ -49,7 +49,7 @@ interface ScoreInputProps extends CXProp, ForwardRef<HTMLInputElement> {
 
   // forwarding
   input?: NumberInput.InputProps
-  root?: NumberInput.RootProps
+  root?: NumberInput.RootProps & { class: string }
 }
 
 // ----------------------------------------------------

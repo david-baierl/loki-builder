@@ -15,7 +15,7 @@ import { css } from '@linaria/core'
 
 export const MOD_DIAMETER = 80
 
-const conatinerClass = css`
+const containerClass = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +51,7 @@ export function ModifierCircle(props: ModifierCircleProps) {
   }
 
   return (
-    <div class={cx(conatinerClass, cx_class())}>
+    <div class={cx(containerClass, cx_class())}>
       {as_string()}
     </div>
   )

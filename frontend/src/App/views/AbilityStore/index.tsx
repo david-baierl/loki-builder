@@ -39,7 +39,7 @@ const name_class = css`
 // properties
 // ----------------------------------------------------
 
-interface AbillityScoreProps {
+interface AbilityScoreProps {
   name: string
   score: number
 }
@@ -48,7 +48,7 @@ interface AbillityScoreProps {
 // component
 // ----------------------------------------------------
 
-export function AbillityScore(props: AbillityScoreProps) {
+export function AbilityScore(props: AbilityScoreProps) {
   const { name, score } = from_proxy(props)
 
   return (
