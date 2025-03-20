@@ -7,8 +7,8 @@ import {
 } from 'solid-js'
 
 import {
+  DeepAccessors,
   from_proxy,
-  SignalGetters,
   to_proxy,
 } from './proxy'
 
@@ -33,7 +33,7 @@ export function create_context<P extends object>(name: string, defaultValue?: P)
   const Provider: Context<P> = (props: P & ParentProps) => {
     const { children, ...others } = from_proxy(props)
 
-    return <Context.Provider value={to_proxy(others as SignalGetters<P>)} children={children()} />
+    return <Context.Provider value={to_proxy(others as DeepAccessors<P>)} children={children()} />
   }
 
   Provider.Context = Context

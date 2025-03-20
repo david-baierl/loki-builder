@@ -1,23 +1,18 @@
 import { Accessor } from 'solid-js'
 
-import {
-  _mutate_getter,
-  SignalGetter,
-} from './signals'
-
-export type SignalGetters<T extends object> = {
-  [K in keyof T]-?: SignalGetter<T[K]>
+export type Accessors<T extends object> = {
+  [K in keyof T]-?: Accessor<T[K]>
 }
 
-export type DeepSignalGetters<T> = {
+export type DeepAccessors<T> = {
   /* eslint-disable @stylistic/indent */
   [K in keyof T]-?: (
 
-    T[K] extends any[] ? SignalGetter<T[K]>
-    : T[K] extends (...args: any[]) => any ? SignalGetter<T[K]>
-    : T[K] extends object ? DeepSignalGetters<T[K]> & SignalGetter<T[K]>
-    : T[K] extends (object | undefined) ? DeepSignalGetters<Partial<T[K]>> & SignalGetter<T[K]>
-    : SignalGetter<T[K]>
+    T[K] extends any[] ? Accessor<T[K]>
+    : T[K] extends (...args: any[]) => any ? Accessor<T[K]>
+    : T[K] extends object ? DeepAccessors<T[K]> & Accessor<T[K]>
+    : T[K] extends (object | undefined) ? DeepAccessors<Partial<T[K]>> & Accessor<T[K]>
+    : Accessor<T[K]>
 
   )
   /* eslint-enable @stylistic/indent */
@@ -26,10 +21,7 @@ export type DeepSignalGetters<T> = {
 function _from_deep_proxy<T>(source: Accessor<T>) {
   const get = (key: keyof T): any => {
     if (key in source) return source[key as keyof Accessor<T>]
-    const getter = () => source()?.[key as keyof T]
-    _mutate_getter(getter)
-
-    return _from_deep_proxy(getter)
+    return _from_deep_proxy(() => source()?.[key as keyof T])
   }
 
   return new Proxy(source, {
@@ -44,7 +36,7 @@ function _from_deep_proxy<T>(source: Accessor<T>) {
     getOwnPropertyDescriptor(_, key) {
       return { configurable: true, enumerable: true, value: get(key as keyof T) }
     },
-  }) as DeepSignalGetters<T> & Accessor<T>
+  }) as DeepAccessors<T> & Accessor<T>
 }
 
 /**
@@ -58,14 +50,14 @@ function _from_deep_proxy<T>(source: Accessor<T>) {
  * const { foo, bar, ...others } = from_proxy(props)
  * ```
  */
-export function from_proxy<T extends object>(props: T): DeepSignalGetters<T> {
+export function from_proxy<T extends object>(props: T): DeepAccessors<T> {
   return _from_deep_proxy(() => props)
 }
 
 /**
  * @warn
  * - only use this inside JSX ¯\\_(ツ)_/¯ don't ask why
- *   - spreading properties are only realy reactive in JSX
+ *   - spreading properties are only really reactive in JSX
  * - never add or remove properties dynamically. \
  *   to remove a value: use `undefined` instead. \
  *   otherwise reactivity will break
@@ -75,7 +67,7 @@ export function from_proxy<T extends object>(props: T): DeepSignalGetters<T> {
  * return <Child {...to_proxy(props)} />
  * ```
  */
-export function to_proxy<T extends object>(props: SignalGetters<T>): T {
+export function to_proxy<T extends object>(props: Accessors<T>): T {
   return new Proxy(props, {
     get(obj, key) {
       return obj[key as keyof typeof obj]?.()
