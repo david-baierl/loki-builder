@@ -1,7 +1,8 @@
 use serde::{Deserialize, Serialize};
 use specta::Type;
 use specta_typescript::Typescript;
-use tauri_specta::{collect_commands, collect_events, Builder, Event};
+use tauri::App;
+use tauri_specta::{collect_commands, collect_events, Builder, Event, TypedEvent};
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
@@ -30,14 +31,22 @@ pub fn run() {
         .invoke_handler(builder.invoke_handler())
         .setup(move |app| {
             builder.mount_events(app);
+            setup(app);
 
-            DemoEvent::listen(app, |event| {
-                println!("{:?}", event.payload);
-            });
+            // DemoEvent::listen(app, handle_event);
             // DemoEvent("Test".into()).emit(app).unwrap();
 
             Ok(())
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+}
+
+fn setup(app: &mut App) {
+    DemoEvent::listen(app, handle_event);
+}
+
+
+fn handle_event(event: TypedEvent<DemoEvent>) {
+    println!("{:?}", event.payload);
 }
