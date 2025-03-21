@@ -1,0 +1,6 @@
+background/example:
+  add:
+    - type: pool/ability
+      options: [INT, WIS, CHA]
+      size: 3
+      max: 2

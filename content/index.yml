@@ -1,0 +1,6 @@
+character:
+  add:
+    - select: ability_score/*
+    - select: background/*
+    - select: species/*
+    - level: 1

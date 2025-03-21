@@ -1,0 +1,31 @@
+ability_score/std_array:
+  name: standard array
+  type: pool/ability
+  options: [8,10,12,13,14,15]
+
+  # @TODO: invent a config structure
+  # add:
+
+  #   - type: pool/ability
+  #     options: STR
+  #     size: ~/options
+
+  #   - type: pool/ability
+  #     options: DEX
+  #     size: ~/options
+
+  #   - type: pool/ability
+  #     options: CON
+  #     size: ~/options
+
+  #   - type: pool/ability
+  #     options: INT
+  #     size: ~/options
+
+  #   - type: pool/ability
+  #     options: WIS
+  #     size: ~/options
+
+  #   - type: pool/ability
+  #     options: CHA
+  #     size: ~/options

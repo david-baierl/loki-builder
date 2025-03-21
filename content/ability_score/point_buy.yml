@@ -1,0 +1,43 @@
+ability_score/point_buy:
+  name: point buy
+  add:
+
+    # ------------------------------
+    # minimum 8
+    # ------------------------------
+
+    - type: pool/ability
+      options: STR
+      size: 8
+
+    - type: pool/ability
+      options: DEX
+      size: 8
+
+    - type: pool/ability
+      options: CON
+      size: 8
+
+    - type: pool/ability
+      options: INT
+      size: 8
+
+    - type: pool/ability
+      options: WIS
+      size: 8
+
+    - type: pool/ability
+      options: CHA
+      size: 8
+
+    # ------------------------------
+    # point buy
+    # ------------------------------
+
+    - type: pool/ability
+      options: [STR, DEX, CON, INT, WIS, CHA]
+      size: 27
+      highest: 15
+      cost:
+        0: 1
+        14: 2
