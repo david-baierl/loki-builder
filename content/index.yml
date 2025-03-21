@@ -25,6 +25,61 @@ core/proficiency:
     - score: proficiency
       value: 2
 
+core/hp:
+  name: hit points
+  add:
+    - score: hp/max
+      value: 0
+
+    - resource: hp
+      value: hp/max
+
+    - resource: tp
+      value: 0
+
+core/ability:
+  add:
+
+    # --- scores --- #
+
+    - score: strength
+      value: 0
+
+    - score: dexterity
+      value: 0
+
+    - score: constitution
+      value: 0
+
+    - score: intelligence
+      value: 0
+
+    - score: wisdom
+      value: 0
+
+    - score: charisma
+      value: 0
+
+    # --- modifier --- #
+
+    - score: strength/mod
+      compute: (strength - 10) / 2
+
+    - score: dexterity/mod
+      compute: (dexterity - 10) / 2
+
+    - score: constitution/mod
+      compute: (constitution - 10) / 2
+
+    - score: intelligence/mod
+      compute: (intelligence - 10) / 2
+
+    - score: wisdom/mod
+      compute: (wisdom - 10) / 2
+
+    - score: charisma/mod
+      compute: (charisma - 10) / 2
+
 # -----------------------------------------------------------
 # character
 # -----------------------------------------------------------
@@ -38,6 +93,7 @@ core/character:
     - core/passiv
     - core/difficulty
     - core/proficiency
+    - core/ability
 
     # --- character creation --- #
 

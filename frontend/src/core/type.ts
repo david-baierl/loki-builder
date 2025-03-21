@@ -1,15 +1,30 @@
 type KeyRef = string
 type WildcastRef = `${string}/*`
 
-type Command =
-  // @TODO
-  | `/roll ${string}`
+// -----------------------------------------------------------
+// resource
+// -----------------------------------------------------------
 
-interface BaseDef {
-  name?: string
+const enum RESOURCE_REFRESH {
+  ATTACK,
+  ACTION,
+  TURN,
+  ROUND,
+  FIGHT,
+  SHORT_REST,
+  LONG_REST,
+  MANUAL,
+  NEVER,
+}
 
-  /** markdown */
-  description?: string
+interface Resource {
+  resource: KeyRef | WildcastRef
+
+  /** calculated when feature refreshes @default 1 */
+  value: number | string
+
+  /** @default LONG_REST */
+  refresh?: RESOURCE_REFRESH
 }
 
 // -----------------------------------------------------------
@@ -19,8 +34,11 @@ interface BaseDef {
 interface Score {
   score: KeyRef | WildcastRef
 
-  /** @default 1 */
-  value?: number | Command
+  /** calculated when gaining this feature @default 1 */
+  value?: number | string
+
+  /** live updated when dependencies changes */
+  compute?: string
 
   /** the maximum score an ability can reach from this pool, @default infinity */
   max?: number
@@ -38,7 +56,7 @@ interface Score {
 // -----------------------------------------------------------
 
 interface Options {
-  options: WildcastRef | Feature[]
+  options: WildcastRef | KeyRef[]
   default?: KeyRef
 }
 
@@ -54,17 +72,20 @@ type Feature =
 
   // modify values
   | Score
+  | Resource
 
   // inline anonymous definition
   | Definition
 
-interface FeatureDef extends BaseDef {
+interface Definition {
+  name?: string
+
+  /** markdown */
+  description?: string
+
   add?: Feature | Feature[]
   remove?: KeyRef | WildcastRef
 }
-
-type Definition =
-  | FeatureDef
 
 export interface Content {
   [K: KeyRef]: Definition
