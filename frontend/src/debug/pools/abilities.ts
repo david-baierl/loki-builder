@@ -4,24 +4,24 @@ import {
 } from '~utils/collection'
 import { signal } from '~utils/signals'
 
-const enum ABILITY {
+export const enum ABILITY {
   /** ability score type `strength` */
-  STR,
+  STR = 'STR',
 
   /** ability score type `dexterity` */
-  DEX,
+  DEX = 'DEX',
 
   /** ability score type `constitution` */
-  CON,
+  CON = 'CON',
 
   /** ability score type `intelligence` */
-  INT,
+  INT = 'INT',
 
   /** ability score type `wisdom` */
-  WIS,
+  WIS = 'WIS',
 
   /** ability score type `charisma` */
-  CHA,
+  CHA = 'CHA',
 }
 
 const enum ABILITY_PRIORITY {

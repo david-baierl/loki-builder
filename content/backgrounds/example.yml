@@ -1,0 +1,5 @@
+background/example:
+  add:
+    - score: [INT, WIS, CHA]
+      value: 3
+      limit: 2

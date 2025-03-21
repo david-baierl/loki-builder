@@ -1,6 +1,49 @@
-character:
+# -----------------------------------------------------------
+# basic scores
+# -----------------------------------------------------------
+
+core/level:
   add:
-    - select: ability_score/*
-    - select: background/*
-    - select: species/*
-    - level: 1
+    - score: level
+      value: 1
+
+core/passiv:
+  name: passiv base
+  add:
+    - score: passiv
+      value: 10
+
+core/difficulty:
+  name: difficulty class base
+  add:
+    - score: difficulty
+      value: 8
+
+core/proficiency:
+  name: proficiency bonus
+  add:
+    - score: proficiency
+      value: 2
+
+# -----------------------------------------------------------
+# character
+# -----------------------------------------------------------
+
+core/character:
+  add:
+
+    # --- basic scores to track --- #
+
+    - core/level
+    - core/passiv
+    - core/difficulty
+    - core/proficiency
+
+    # --- character creation --- #
+
+    - options: ability/*
+      default: ability/points
+
+    - options: background/*
+
+    - options: species/*

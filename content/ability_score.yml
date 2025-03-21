@@ -1,0 +1,90 @@
+# -----------------------------------------------------------
+# point buy
+# -----------------------------------------------------------
+
+ability/points:
+  name: point buy
+  add:
+
+    # --- minimum 8 --- #
+
+    - score: strength
+      value: 8
+
+    - score: dexterity
+      value: 8
+
+    - score: constitution
+      value: 8
+
+    - score: intelligence
+      value: 8
+
+    - score: wisdom
+      value: 8
+
+    - score: charisma
+      value: 8
+
+    # --- point buy --- #
+
+    - score: [strength, dexterity, constitution, intelligence, wisdom, charisma]
+      value: 27
+      max: 15
+      cost:
+        14: 2
+
+# -----------------------------------------------------------
+# random roll
+# -----------------------------------------------------------
+
+ability/roll:
+  name: random roll
+  add:
+
+    - score: strength
+      value: /roll 3d6
+
+    - score: dexterity
+      value: /roll 3d6
+
+    - score: constitution
+      value: /roll 3d6
+
+    - score: intelligence
+      value: /roll 3d6
+
+    - score: wisdom
+      value: /roll 3d6
+
+    - score: charisma
+      value: /roll 3d6
+
+# -----------------------------------------------------------
+# standard array
+# -----------------------------------------------------------
+
+ability/array:
+  name: standard array
+
+  # @TODO: invent a config structure
+  # options: [8,10,12,13,14,15]
+  # add:
+
+  #   - score: strength
+  #     value: ~/options
+
+  #   - score: dexterity
+  #     value: ~/options
+
+  #   - score: constitution
+  #     value: ~/options
+
+  #   - score: intelligence
+  #     value: ~/options
+
+  #   - score: wisdom
+  #     value: ~/options
+
+  #   - score: charisma
+  #     value: ~/options
