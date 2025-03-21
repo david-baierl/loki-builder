@@ -26,14 +26,17 @@
       "vite/client"
     ],
     "paths": {
+      "~core/*": [
+        "src/core/*"
+      ],
       "~debug/*": [
         "src/debug/*"
       ],
-      "~utils/*": [
-        "src/utils/*"
-      ],
       "~tauri": [
         "gen/tauri.ts"
+      ],
+      "~utils/*": [
+        "src/utils/*"
       ],
       "~/*": [
         "src/*"

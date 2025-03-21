@@ -23,9 +23,10 @@ export default defineConfig(async () => ({
 
   resolve: {
     alias: {
+      '~core': path.resolve(__dirname, './src/core'),
       '~debug': path.resolve(__dirname, './src/debug'),
-      '~utils': path.resolve(__dirname, './src/utils'),
       '~tauri': path.resolve(__dirname, './gen/tauri.ts'),
+      '~utils': path.resolve(__dirname, './src/utils'),
       '~': path.resolve(__dirname, './src'),
     },
   },
