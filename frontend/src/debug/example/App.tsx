@@ -20,14 +20,17 @@ function MyInput(props: ForwardRef<HTMLInputElement>) {
   return <input {...forwarded} />
 }
 
+events.demoEvent.listen((event) => {
+  console.log('demoEvent', event.payload)
+})
+
 export function App() {
   const greetMsg = signal('')
   const name = signal('')
 
   async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    greetMsg.set(await commands.greet(name()))
-    await events.demoEvent.emit('hello event')
+    const result = await commands.greet(name())
+    greetMsg.set(result)
   }
 
   return (

@@ -14,6 +14,7 @@
     "start": "pnpm deep start",
     "dev": "pnpm deep dev",
     "build": "pnpm deep build",
+    "prebuild": "pnpm deep prebuild",
     "lint": "pnpm deep lint"
   },
   "devDependencies": {

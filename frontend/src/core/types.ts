@@ -100,10 +100,10 @@ interface Definition {
   description?: string
 
   /** require features, conditions or positive values (computed) */
-  require: string | string[]
+  require?: string | string[]
 
   add?: Feature | Feature[]
-  remove?: KeyRef | WildcastRef
+  remove?: KeyRef | WildcastRef | KeyRef[]
 }
 
 export interface Content {
