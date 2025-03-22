@@ -32,13 +32,20 @@ interface Resource {
 // -----------------------------------------------------------
 
 interface Score {
-  score: KeyRef | WildcastRef
+  score: KeyRef
 
   /** calculated when gaining this feature @default 1 */
   value?: number | string
 
   /** live updated when dependencies changes */
   compute?: string
+}
+
+interface ScorePool {
+  score: WildcastRef | KeyRef[]
+
+  /** calculated when gaining this feature @default 1 */
+  value?: number | string
 
   /** the maximum score an ability can reach from this pool, @default infinity */
   max?: number
@@ -49,6 +56,13 @@ interface Score {
   // @TODO: add math possibility
   /** cost increase at score: @default {0:1} */
   cost?: { [K in number]: number }
+}
+
+interface ScoreSpend {
+  spend: KeyRef
+
+  /** @default 1 */
+  value?: number
 }
 
 // -----------------------------------------------------------
@@ -72,6 +86,8 @@ type Feature =
 
   // modify values
   | Score
+  | ScorePool
+  | ScoreSpend
   | Resource
 
   // inline anonymous definition
@@ -82,6 +98,9 @@ interface Definition {
 
   /** markdown */
   description?: string
+
+  /** require features, conditions or positive values (computed) */
+  require: string | string[]
 
   add?: Feature | Feature[]
   remove?: KeyRef | WildcastRef

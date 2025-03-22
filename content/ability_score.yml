@@ -28,6 +28,7 @@ ability/points:
 
     # --- point buy --- #
 
+    # pool: must be spend manual across all option
     - score: [strength, dexterity, constitution, intelligence, wisdom, charisma]
       value: 27
       max: 15
@@ -62,29 +63,29 @@ ability/roll:
 
 # -----------------------------------------------------------
 # standard array
+# @TODO: invent a config structure
 # -----------------------------------------------------------
 
-ability/array:
-  name: standard array
+# ability/array:
+#   name: standard array
 
-  # @TODO: invent a config structure
-  # options: [8,10,12,13,14,15]
-  # add:
+#   options: [8,10,12,13,14,15]
+#   add:
 
-  #   - score: strength
-  #     value: ~/options
+#     - score: strength
+#       value: ~/options
 
-  #   - score: dexterity
-  #     value: ~/options
+#     - score: dexterity
+#       value: ~/options
 
-  #   - score: constitution
-  #     value: ~/options
+#     - score: constitution
+#       value: ~/options
 
-  #   - score: intelligence
-  #     value: ~/options
+#     - score: intelligence
+#       value: ~/options
 
-  #   - score: wisdom
-  #     value: ~/options
+#     - score: wisdom
+#       value: ~/options
 
-  #   - score: charisma
-  #     value: ~/options
+#     - score: charisma
+#       value: ~/options

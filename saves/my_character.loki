@@ -1,0 +1,114 @@
+character:
+  name: The Nameless One
+  add:
+
+    # ------------------------------------------------------------
+    # static features
+    # ------------------------------------------------------------
+
+    # --- character creation --- #
+
+    - core/character
+    - select: ability/points
+
+    # starting class
+    - select: class/start/fighter
+    - select: feat/fighting_style/blind_fighting
+
+    # background
+    - select: background/example
+
+    # species
+    - select: species/human
+    - select: feat/lucky
+
+    # --- ability scores --- #
+
+    - spend: strength
+      value: 9 # 17: base(8) + 9
+
+    # - spend: dexterity
+    #   value: 0 # 8: base(8)
+
+    - spend: constitution
+      value: 6 # 14: base(8) + 6
+
+    - spend: intelligence
+      value: 6 # 14: base(8) + 6
+
+    - spend: wisdom
+      value: 4 # 12: base(8) + 4
+
+    - spend: charisma
+      value: 2 # 10: base(8) + 2
+
+    # --- level & classes --- #
+
+    # lvl 2 (fighter 1, wizard 1)
+    - multiclass/fighter
+    - multiclass/wizard
+
+    # lvl 3 (fighter 2, wizard 1)
+    - score: level/fighter
+
+    # lvl 4 (fighter 3, wizard 1)
+    - score: level/fighter
+    - select: class/fighter/battlemaster
+    - spend: maneuvers/brace
+    - spend: maneuvers/evasive_footwork
+    - spend: maneuvers/grappling_strike
+
+    # lvl 5 (fighter 4, wizard 1)
+    - score: level/fighter
+    - select: feat/sentinel
+
+    # lvl 6 (fighter 4, wizard 2)
+    - score: level/wizard
+    - spend: spell/cantrip/shocking_grasp
+    - spend: spell/cantrip/mage_hand
+    - spend: spell/cantrip/mending
+    - spend: spell/lvl/mage_armor
+    - spend: spell/lvl/shield
+
+    # lvl 7 (fighter 4, wizard 3)
+    - score: level/wizard
+    - select: class/wizard/bladesinger
+    - spend: spell/lvl/magic_missile
+
+    # --- manual added --- #
+
+    # add spell without using learning resource
+    - manuell: spell/lvl/detect_magic
+
+    # ------------------------------------------------------------
+    # dynamic features
+    # ------------------------------------------------------------
+
+    # --- inventory --- #
+
+    - item: greatsword
+    - item: healing_potion
+      amount: 2
+
+    # --- prepare spell --- #
+
+    - prepare: spell/mage_armor
+    - prepare: spell/shield
+    - prepare: spell/magic_missile
+
+    # --- resources --- #
+
+    - resource: spell_slot/1
+      value: 4
+
+    - resource: spell_slot/2
+      value: 2
+
+    - resource: battlemaster/superiority
+      value: 4
+
+    - resource: hp
+      value: 20
+
+    - resource: gold
+      value: 500

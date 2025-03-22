@@ -1,5 +1,5 @@
 background/example:
   add:
-    - score: [INT, WIS, CHA]
+    - score: [intelligence, wisdom, charisma]
       value: 3
       limit: 2
