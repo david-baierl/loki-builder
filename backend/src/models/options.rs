@@ -3,8 +3,7 @@ use ts_rs::TS;
 
 use super::FeatureReference;
 
-#[derive(Serialize, Deserialize, Clone, TS)]
-#[ts(export)]
+#[derive(Serialize, Deserialize, TS)]
 pub struct FeatureOptions {
     // @TODO: only allow `KeyList` & `Wildcast`
     options: FeatureReference,

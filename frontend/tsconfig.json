@@ -32,8 +32,11 @@
       "~debug/*": [
         "src/debug/*"
       ],
-      "~tauri": [
-        "gen/tauri.ts"
+      "~ipc": [
+        "src/ipc"
+      ],
+      "~gen/*": [
+        "gen/*"
       ],
       "~utils/*": [
         "src/utils/*"
@@ -44,7 +47,8 @@
     }
   },
   "include": [
-    "src"
+    "src",
+    "gen",
   ],
   "references": [
     {

@@ -65,6 +65,9 @@ export default tseslint.config(
             // ignore debug paths
             '!~debug/**',
 
+            // allow generated files
+            '!~gen/**',
+
             // but still block everything that is starting with an underscore
             '*/**/_*',
             '!./_*',

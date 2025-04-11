@@ -3,8 +3,7 @@ use ts_rs::TS;
 
 use super::{Feature, FeatureReference, MaybeVec};
 
-#[derive(Serialize, Deserialize, Clone, TS)]
-#[ts(export)]
+#[derive(Serialize, Deserialize, TS)]
 pub struct FeatureDefinition {
     #[ts(optional)]
     name: Option<String>,
