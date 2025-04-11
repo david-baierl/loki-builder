@@ -30,8 +30,23 @@ A character builder based on the 2024 Dungeons and Dragons rules
 pnpm i --forzen-lockfile
 ```
 
+## prebuild typescript types from rust
+
+the prebuild command will run cargo test,
+and as a side effect will generate typescript bindings for the IPC layer
+
+```sh
+pnpm prebuild
+```
+
 ## start dev environment
 
 ```sh
 pnpm tauri dev
+```
+
+## start dev environment
+
+```sh
+pnpm tauri build
 ```

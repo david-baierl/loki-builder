@@ -1,13 +1,13 @@
 name: loki-builder/frontend
 type: module
 scripts:
-  start: vite
-  dev: vite
   build: vite build
-  serve: vite preview
+  dev: vite
   lint: pnpm lint:css && pnpm lint:ts
   lint:css: stylelint "**/*.{css,scss,ts,tsx}"
   lint:ts: eslint .
+  serve: vite preview
+  start: vite
 dependencies:
   '@ark-ui/solid': ^4.10.2
   '@catppuccin/palette': ^1.7.1
