@@ -1,3 +1,5 @@
+use tauri::{command, AppHandle};
+
 use crate::{
     ipc::{IpcRequest, IpcResponse},
     models::FeatureDefinition,
@@ -19,7 +21,7 @@ type RESPONSE = IpcResponse<FeatureDefinition>;
 // implementation
 // ---------------------------------------
 
-#[tauri::command]
-pub fn get_definitions(_handle: tauri::AppHandle, request: REQUEST) -> RESPONSE {
+#[command]
+pub fn get_definitions(_handle: AppHandle, request: REQUEST) -> RESPONSE {
     IpcResponse::new(FeatureDefinition::new())
 }
