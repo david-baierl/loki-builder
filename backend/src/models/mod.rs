@@ -1,11 +1,13 @@
 mod definition;
 mod feature;
-mod reference;
-mod options;
+mod ipc;
 mod maybe_vec;
+mod options;
+mod reference;
 
-pub use maybe_vec::*;
 pub use definition::*;
 pub use feature::*;
-pub use reference::*;
+pub use ipc::*;
+pub use maybe_vec::*;
 pub use options::*;
+pub use reference::*;

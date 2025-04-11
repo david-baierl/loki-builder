@@ -6,12 +6,12 @@ use crate::models::IpcEvent;
 // payload
 // ---------------------------------------
 
-type PAYLOAD = String;
+type PAYLOAD = f64;
 
 // ---------------------------------------
 // implementation
 // ---------------------------------------
 
-pub fn hello(app: &AppHandle, data: PAYLOAD) -> Result<(), tauri::Error> {
-    app.emit("hello", IpcEvent { data })
+pub fn notify(app: &AppHandle, data: PAYLOAD) -> Result<(), tauri::Error> {
+    app.emit("notify", IpcEvent { data })
 }

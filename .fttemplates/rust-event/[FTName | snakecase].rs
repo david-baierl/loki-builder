@@ -12,6 +12,6 @@ type PAYLOAD = String;
 // implementation
 // ---------------------------------------
 
-pub fn hello(app: &AppHandle, data: PAYLOAD) -> Result<(), tauri::Error> {
-    app.emit("hello", IpcEvent { data })
+pub fn [FTName | snakecase](app: &AppHandle, data: PAYLOAD) -> Result<(), tauri::Error> {
+    app.emit("[FTName | snakecase]", IpcEvent { data })
 }

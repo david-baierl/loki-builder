@@ -24,7 +24,7 @@ export namespace IPC {
   export const Actions = new Proxy({} as Actions, {
     get(_, name): IpcAction {
       assert(typeof name === 'string')
-      return data => try_async(() => invoke(name, data))
+      return request => try_async(() => invoke(name, { request }))
     },
   })
 

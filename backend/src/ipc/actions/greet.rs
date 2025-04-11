@@ -1,17 +1,31 @@
 use tauri::{command, AppHandle};
 
-use crate::ipc::{events, IpcEvent, IpcRequest, IpcResponse};
+use crate::{
+    ipc::events,
+    models::{IpcRequest, IpcResponse},
+};
+
+// ---------------------------------------
+// request
+// ---------------------------------------
+
+type REQUEST = IpcRequest<String>;
+
+// ---------------------------------------
+// response
+// ---------------------------------------
+
+type RESPONSE = IpcResponse<String>;
+
+// ---------------------------------------
+// implementation
+// ---------------------------------------
 
 #[command]
-pub fn greet(app: AppHandle, request: IpcRequest<String>) -> IpcResponse<String> {
-    events::hello(
-        app,
-        IpcEvent {
-            data: request.data.clone(),
-        },
-    );
+pub async fn greet(app: AppHandle, request: REQUEST) -> Result<RESPONSE, tauri::Error> {
+    events::hello(&app, request.data.clone())?;
 
-    IpcResponse {
+    Ok(IpcResponse {
         data: format!("Hello, {}! You've been greeted from Rust!", request.data),
-    }
+    })
 }

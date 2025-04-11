@@ -9,7 +9,8 @@
   "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 1,
   "files.associations": {
     "**/.fttemplates/*/*.tsx": "plaintext",
-    "**/.fttemplates/*/*.ts": "plaintext"
+    "**/.fttemplates/*/*.ts": "plaintext",
+    "**/.fttemplates/*/*.rs": "plaintext"
   },
   "javascript.preferences.autoImportFileExcludePatterns": [
     ".fttemplates/**"

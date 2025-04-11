@@ -1,10 +1,7 @@
 import './App.css'
 
 import Palette from '~debug/palette'
-import {
-  commands,
-  events,
-} from '~tauri'
+import { IPC } from '~ipc'
 import { default_value } from '~utils/directives'
 import {
   forward_ref,
@@ -20,8 +17,10 @@ function MyInput(props: ForwardRef<HTMLInputElement>) {
   return <input {...forwarded} />
 }
 
-events.demoEvent.listen((event) => {
-  console.log('demoEvent', event.payload)
+IPC.Events.notify.listen(event => console.log('notify', event))
+IPC.Events.hello.listen((event) => {
+  console.log('hello', event)
+  IPC.Events.notify.emit({ data: 5 })
 })
 
 export function App() {
@@ -29,8 +28,8 @@ export function App() {
   const name = signal('')
 
   async function greet() {
-    const result = await commands.greet(name())
-    greetMsg.set(result)
+    const [err, result] = await IPC.Actions.greet({ data: name() })
+    !err && greetMsg.set(result.data)
   }
 
   return (
