@@ -11,8 +11,7 @@ pub fn greet(app: AppHandle, request: IpcRequest<String>) -> IpcResponse<String>
         },
     );
 
-    IpcResponse::new(format!(
-        "Hello, {}! You've been greeted from Rust!",
-        request.data
-    ))
+    IpcResponse {
+        data: format!("Hello, {}! You've been greeted from Rust!", request.data),
+    }
 }

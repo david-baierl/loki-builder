@@ -23,5 +23,7 @@ type RESPONSE = IpcResponse<FeatureDefinition>;
 
 #[command]
 pub fn get_definitions(_handle: AppHandle, request: REQUEST) -> RESPONSE {
-    IpcResponse::new(FeatureDefinition::new())
+    IpcResponse {
+        data: FeatureDefinition::new(),
+    }
 }
