@@ -1,10 +1,8 @@
 # Loki Builder
 
-A character builder based on the 2024 Dungeons and Dragons rules
+A character builder based on the 2024 Dungeons and Dragons rules.
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+This project is in an really early state of development and highly unstable und unfinished.
 
 ## Setup
 
@@ -16,13 +14,14 @@ A character builder based on the 2024 Dungeons and Dragons rules
 
 #### local (without devcontainer)
 
-- [nvm](https://github.com/nvm-sh/nvm) (optional)
-  - alternative: [nvm-windows](https://github.com/coreybutler/nvm-windows)
-  - alternative: [jorgebucaran/nvm.fish](https://github.com/jorgebucaran/nvm.fish)
 - [nodejs](https://nodejs.org/en) ^22.11.0
   - [pnpm](https://pnpm.io/) ^9.13.2
-- [rust](https://www.rust-lang.org/) ^1.80.1
+- [rust](https://www.rust-lang.org/) ^1.85.0
   - [rustfmt](https://github.com/rust-lang/rustfmt)
+
+### Recommended IDE Setup
+
+- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
 
 ### Install
 
@@ -45,8 +44,10 @@ pnpm prebuild
 pnpm tauri dev
 ```
 
-## start dev environment
+## build production application\*
 
 ```sh
 pnpm tauri build
 ```
+
+*\* at this state: there is currently no fully working build process implemented*
