@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "plugins": [{
+      "name": "@styled/typescript-styled-plugin",
+      "validate": false
+    }],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",

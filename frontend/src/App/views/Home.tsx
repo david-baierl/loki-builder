@@ -1,6 +1,4 @@
-import { rem } from '~/styles'
-
-import { css } from '@linaria/core'
+import { css } from '@acab/ecsstatic'
 
 import { AbilityScore } from './AbilityStore'
 
@@ -8,21 +6,21 @@ const container_class = css`
   background-color: var(--surface-base);
   width: 100%;
   height: 100%;
-  padding: ${rem(16)};
-  gap: ${rem(16)};
+  padding: 16px;
+  gap: 16px;
   overflow: auto;
 `
 
 const column_class = css`
   display: flex;
   flex-direction: row;
-  gap: ${rem(16)};
+  gap: 16px;
 `
 
 const row_class = css`
   display: flex;
   flex-direction: column;
-  gap: ${rem(16)};
+  gap: 16px;
 `
 
 export function Home() {

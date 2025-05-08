@@ -5,7 +5,7 @@ import {
 } from '~utils/cx'
 import { use } from '~utils/use'
 
-import { css } from '@linaria/core'
+import { css } from '@acab/ecsstatic'
 
 // ----------------------------------------------------
 // styles

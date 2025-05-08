@@ -17,8 +17,10 @@ dependencies:
   lucide-solid: ^0.475.0
   solid-js: ^1.9.5
 devDependencies:
+  '@acab/ecsstatic': ^0.9.0
   '@babel/preset-typescript': ^7.27.0
   '@linaria/core': ^6.3.0
+  '@styled/typescript-styled-plugin': ^1.0.1
   '@stylelint/postcss-css-in-js': ^0.38.0
   '@stylistic/eslint-plugin': ^4.2.0
   '@types/node': ^22.14.0

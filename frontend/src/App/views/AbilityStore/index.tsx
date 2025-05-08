@@ -1,7 +1,6 @@
-import { rem } from '~/styles'
 import { use } from '~utils/use'
 
-import { css } from '@linaria/core'
+import { css } from '@acab/ecsstatic/scss'
 
 import { ModifierCircle } from './ModifierCircle'
 import { ScoreInput } from './ScoreInput'
@@ -13,14 +12,18 @@ import { ScoreInput } from './ScoreInput'
 // @TODO: cleanup styles with design system
 
 const container_class = css`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid var(--color-gray-800);
-  border-radius: ${rem(16)} ${rem(16)} 0 0;
-  padding: ${rem(16)} ${rem(32)};
-  gap: ${rem(8)};
-  background: var(--surface-crust);
+  @use '~scss' as *;
+
+  @layer base {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    border: rem(2) solid var(--color-gray-800);
+    border-radius: rem(16) rem(16) 0 0;
+    padding: rem(16) rem(32);
+    gap: rem(8);
+    background: var(--surface-crust);
+  }
 `
 
 const wrapper_class = css`
@@ -28,7 +31,7 @@ const wrapper_class = css`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: ${rem(8)};
+  gap: 8px;
 `
 
 const name_class = css`

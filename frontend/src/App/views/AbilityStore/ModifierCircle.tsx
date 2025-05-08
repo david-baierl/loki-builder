@@ -1,11 +1,10 @@
-import { rem } from '~/styles'
 import {
   cx,
   CXProp,
 } from '~utils/cx'
 import { use } from '~utils/use'
 
-import { css } from '@linaria/core'
+import { css } from '@acab/ecsstatic'
 
 // ----------------------------------------------------
 // styles
@@ -19,11 +18,11 @@ const containerClass = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${rem(MOD_DIAMETER)};
-  height: ${rem(MOD_DIAMETER)};
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: var(--surface-crust);
-  font-size: ${rem(28)};
+  font-size: 28px;
   border: 3px solid var(--color-gray-800);
 `
 

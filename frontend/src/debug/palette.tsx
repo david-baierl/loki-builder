@@ -4,11 +4,11 @@ import {
 } from 'solid-js'
 import { Portal } from 'solid-js/web'
 
+import { css } from '@acab/ecsstatic'
 import {
   Tooltip as ArkTooltip,
   useTooltip,
 } from '@ark-ui/solid/tooltip'
-import { css } from '@linaria/core'
 
 const colorBox = css`
   all: unset;

@@ -5,20 +5,22 @@ import {
 } from 'vite'
 import solid from 'vite-plugin-solid'
 
-import linaria from '@wyw-in-js/vite'
+// import linaria from '@wyw-in-js/vite'
+import { ecsstatic } from '@acab/ecsstatic/vite'
 
 const host = process.env.TAURI_DEV_HOST
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   plugins: [
-    linaria({
-      include: ['**/*.{ts,tsx}'],
-      babelOptions: {
-        presets: ['@babel/typescript'],
-      },
-    }),
+    // linaria({
+    //   include: ['**/*.{ts,tsx}'],
+    //   babelOptions: {
+    //     presets: ['@babel/typescript'],
+    //   },
+    // }),
     solid(),
+    ecsstatic(),
   ],
 
   resolve: {
@@ -28,6 +30,7 @@ export default defineConfig(async () => ({
       '~gen': path.resolve(__dirname, './gen'),
       '~ipc': path.resolve(__dirname, './src/ipc'),
       '~utils': path.resolve(__dirname, './src/utils'),
+      '~scss': path.resolve(__dirname, './src/styles'),
       '~': path.resolve(__dirname, './src'),
     },
   },

@@ -138,7 +138,7 @@ $latte_gray: map.get(catppuccin.$palette, "latte", "overlay1");
 
   %#{$color_name},
   .#{$color_name} {
-    @include bind_alias("primary", $color_name)
+    @include bind_alias("primary", $color_name);
   }
 }
 

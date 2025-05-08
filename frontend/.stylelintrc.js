@@ -4,24 +4,15 @@ export default {
   ],
   extends: [
     'stylelint-config-standard',
+    'stylelint-config-standard-scss',
   ],
   rules: {
     'property-no-vendor-prefix': null,
+    'scss/at-mixin-pattern': null,
+    'scss/dollar-variable-pattern': null,
+    'scss/dollar-variable-empty-line-before': null,
   },
   overrides: [
-    {
-      files: [
-        '*.scss',
-      ],
-      extends: [
-        'stylelint-config-standard-scss',
-      ],
-      rules: {
-        'scss/at-mixin-pattern': null,
-        'scss/dollar-variable-pattern': null,
-        'scss/dollar-variable-empty-line-before': null,
-      },
-    },
     {
       files: [
         '*.ts',

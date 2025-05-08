@@ -1,4 +1,3 @@
-import { rem } from '~/styles'
 import {
   cx,
   CXProp,
@@ -9,11 +8,11 @@ import {
 } from '~utils/forward_ref'
 import { use } from '~utils/use'
 
+import { css } from '@acab/ecsstatic'
 import {
   NumberInput,
   NumberInputValueChangeDetails,
 } from '@ark-ui/solid/number-input'
-import { css } from '@linaria/core'
 
 // ----------------------------------------------------
 // styles
@@ -29,9 +28,9 @@ const container_class = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${rem(SCORE_WIDTH)};
-  height: ${rem(SCORE_HEIGHT)};
-  border: ${rem(2)} var(--color-gray-800) solid;
+  width: 80px;
+  height: 48px;
+  border: 2px var(--color-gray-800) solid;
   background-color: var(--surface-crust);
 `
 
