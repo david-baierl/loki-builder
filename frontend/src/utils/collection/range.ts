@@ -1,9 +1,13 @@
 import { Repeatable } from './repeatable'
 
 function* _range(start = 0, stop = 0) {
-  for (let i = start; i <= stop; i++) {
+  const direction = start < stop ? 1 : -1
+
+  for (let i = start; i !== stop; i += direction) {
     yield i
   }
+
+  yield stop
 }
 
 export function range(start = 0, stop = 0) {
